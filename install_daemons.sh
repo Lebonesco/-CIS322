@@ -4,17 +4,41 @@
 prefix=$1
 
 if [[ -n "$prefix" ]]; then
-
 	postgresCmd="git clone http://github.com/postgres/postgres.git"
-	apacheCmd="curl -o httpd.gz http://apache.cs.utah.edu//httpd/-2.4.25.tar.gz"
+	apacheCmd="curl -o httpd.tar.gz http://mirror.symnds.com/software/Apache//httpd/httpd-2.4.25.tar.gz"
 
-
-	if [ ! -d "$prefix" ]; then
-		mkdir -p "$prefix"	
+	
+	store="store"
+	if [ ! -d "$store" ]; then
+		mkdir -p "$store"	
 	fi
 
-	( cd $prefix; $postgresCmd )
-	( cd $prefix; $apacheCmd )
+	cd $store
+
+	echo "starting postgres subshell\n"
+
+	(	
+		
+       		$postgresCmd
+		cd "config/install-sh"
+
+
+
+	)
+
+	echo "start apache subshell\n"
+	(
+	       	$apacheCmd
+		gzip -d httpd.tar.gz
+		tar xvf httpd.tar
+		cd httpd-2.4.25
+		mkdir "$prefix/bin/apachectl"
+		./configure --prefix=$PWD'/'$prefix
+
+		make
+		make install 
+		#Prefix/bin/apachectl -k start
+	)
 
 	echo -e "Running: \n$ $postgresCmd"
 	echo -e "Running: \n$ $apacheCmd"
