@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <title>CIS 322: Assignment 2 - Week 2</title>
+        <link href='http://fonts.googleapis.com/css?family=Enriqueta:700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../osnap.css"/>
+    </head>
+    <body>
+        <table width="100%">
+            <tr><td width=150>
+                            <img align="left" width=150 height=150 src="../images/UOseal108.trans.gif"/>
+                        </td>
+                <td valign="middle" align="center"><h1>CIS 322: Assignment 2 - Week 2</h1></td>
+            </tr>
+            <tr>
+                <td valign="top">
+<table width="100%">
+    <tr>
+    <td class=uobutton>
+                <a href="../index.php">Class Home</a><br>
+    </td> 
+    </tr><tr>
+    <td class=uobutton>
+                <a href="../schedule.php">Schedule</a>
+    </td>
+	</tr><tr> 
+    <td class=uobutton>
+                <a href="../assignments.php">Assignments</a>
+    </td>
+	</tr><tr> 
+    <td class=uobutton>
+                <a href="../materials.php">Links</a>
+    </td>
+    </tr><tr>
+    <td class=osnapbutton>
+                <a href="../project.php">Project</a>
+    </td>
+    </tr><tr>
+    <td class=osnapbutton>
+                <a href="../procedures.php">Procedures</a>
+    </td>
+    </tr>
+</table>
+                </td>
+                <td valign="top">
+<h3>Objective</h3>
+<p>Assignment 2 is intended to provide some experience with SQL and data migration. SQL is the language used to interface with most relational database systems (Oracle, MS SQL, SQLite, etc). Data migration is a common step when delivering a new system that handles an existing process; the business needs to have continuity in the available information so data from legacy systems will need to be moved forward into the new platform.</p>
+
+
+<h2>Step 1: Setup</h2>
+<p>Create a 'sql' directory in your repository. Your work for this assignment will be committed there. Start the postgres daemon and create a database, you will be interacting with the database to complete this assignment. When we grade, the initdb and createdb commands will have been run prior to running your script.</p>
+
+
+<h2>Step 2: Data model</h2>
+<p>Go to the LOST specification document and become familiar with the data model. Create an sql script named 'create_tables.sql' that will create the tables associated with the data model. Run the create_tables.sql script to generate the tables in that database. You can return the database to a clean state by dropping and then recreating the database.</p>
+
+<p>The datamodel is running a bit late... Will hopefully be generated before 1/16... In the meantime, consider the data that may need to be represented to support the functionality of the system. You might also look at the DERP documentation and think about how the user stories in that document motivate the entites and table definitions in the datamodel section.</p>
+
+
+<h2>Step 3: Data migration</h2>
+<p>From the course website, download the legacy data files. The legacy data files should never be committed to your git repository. Write a shell script named 'import_data.sh' that takes in a database name and port number as arguments (e.g. import_data.sh lost_dev 5432). Your script should use curl to download the legacy data from the course website. import_data.sh may call sql and python scripts that you commit to the sql directory. import_data.sh should clean up after itself, any temporary files or tables should be removed before import_data.sh finishes execution.</p>
+
+<p>Legacy data is rarely clean or a good fit for a new data model. Legacy data also rarely comes with much documentation regarding what the data means or how it is related. Expect to spend some time looking at the legacy data and working through how to reshape the data to fit the new data model. You will likely need to write python or SQL scripts to assist with cleaning and reformatting the data.</p>
+
+<p>The legacy data is also running a bit late... <a href="../files/legacy_data_templates.xlsx">Here</a> is an excel workbook that shows the currenly expected format that the legacy data will come in.</p>
+
+<p>The legacy data has finally been received from OSNAP. A README.txt file is included that briefly describes each of the contained csv files. The data files are contained in the tar file <a href="../files/osnap_legacy.tar.gz">here</a>. You can download the tar file using curl.</p>
+
+<h2>Step 4: Documentation</h2>
+<p>You must include a READE.txt file in the sql directory that enumerates all of the files in the sql directory with a short comment regarding what capability the file provides (e.g. create_tables.sql - SQL to create the LOST database tables).</p>
+
+
+<h2>Step 5: Verify commit and push</h2>
+<p>Git has a two step process for publishing changes. The first step is to "commit", which adds a change set to the local copy of the repository. The second step is to "push", which copies all of the committed changes to the remote repository. To verify functionality create a new database, run create_tables.sh, run import_data.sh, and then run a query to list all of the current inventory with the site the inventory is currently located at.</p>
+
+
+            </td></tr>
+            <tr><td colspan=2><hr></td></tr>
+            <tr><td></td><td><center>Last Updated: January 16 2017 10:30:48</center></td></tr>
+        </table>
+    </body>
+</html>
