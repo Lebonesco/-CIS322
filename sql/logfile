@@ -1,0 +1,1382 @@
+LOG:  database system was shut down at 2017-01-19 15:59:23 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "osnapdev" does not exist
+FATAL:  role "DATABASE" does not exist
+FATAL:  role "postgres" does not exist
+FATAL:  role "/osnap/bin/postgres" does not exist
+FATAL:  database "osnapdev" does not exist
+FATAL:  role "postgres" does not exist
+FATAL:  database "osnapdev" does not exist
+ERROR:  database "test_user" already exists
+STATEMENT:  CREATE DATABASE test_user OWNER test_user;
+FATAL:  database "show" does not exist
+FATAL:  database "create_table.sql" does not exist
+FATAL:  role "create_table.sql" does not exist
+ERROR:  syntax error at or near "NOT" at character 20
+STATEMENT:  CREATE DATABASE IF NOT NOT EXISTS 'test_user';
+ERROR:  syntax error at or near "USE" at character 1
+STATEMENT:  USE 'test_user';
+ERROR:  syntax error at or near "'#_levels'" at character 22
+STATEMENT:  DROP TABLE IF EXISTS '#_levels';
+ERROR:  syntax error at or near "'#_levels'" at character 14
+STATEMENT:  CREATE TABLE '#_levels' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	DROP TABLE IF EXISTS '#_compartments';
+ERROR:  syntax error at or near "'#_compartments'" at character 14
+STATEMENT:  CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	DROP TABLE IF EXISTS '#_assets';
+ERROR:  syntax error at or near "'#_assets'" at character 15
+STATEMENT:  CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+		FOREIGN KEY (
+	)
+	DROP TABLE IF EXISTS '#_products';
+	CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "NOT" at character 20
+STATEMENT:  CREATE DATABASE IF NOT EXISTS 'test_user';
+ERROR:  syntax error at or near "USE" at character 1
+STATEMENT:  USE 'test_user';
+ERROR:  syntax error at or near "'#_levels'" at character 22
+STATEMENT:  DROP TABLE IF EXISTS '#_levels';
+ERROR:  syntax error at or near "'#_levels'" at character 14
+STATEMENT:  CREATE TABLE '#_levels' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	DROP TABLE IF EXISTS '#_compartments';
+ERROR:  syntax error at or near "'#_compartments'" at character 14
+STATEMENT:  CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	DROP TABLE IF EXISTS '#_assets';
+ERROR:  syntax error at or near "'#_assets'" at character 15
+STATEMENT:  CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+		FOREIGN KEY (
+	)
+	DROP TABLE IF EXISTS '#_products';
+	CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "NOT" at character 20
+STATEMENT:  CREATE DATABASE IF NOT EXISTS 'test_user';
+ERROR:  syntax error at or near "USE" at character 1
+STATEMENT:  USE 'test_user';
+ERROR:  syntax error at or near "'#_levels'" at character 22
+STATEMENT:  DROP TABLE IF EXISTS '#_levels';
+ERROR:  syntax error at or near "'#_levels'" at character 14
+STATEMENT:  CREATE TABLE '#_levels' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	DROP TABLE IF EXISTS '#_compartments';
+ERROR:  syntax error at or near "'#_compartments'" at character 14
+STATEMENT:  CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	DROP TABLE IF EXISTS '#_assets';
+ERROR:  syntax error at or near "'#_assets'" at character 15
+STATEMENT:  CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+		FOREIGN KEY (
+	)
+	DROP TABLE IF EXISTS '#_products';
+	CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "'#_levels'" at character 22
+STATEMENT:  DROP TABLE IF EXISTS '#_levels';
+ERROR:  syntax error at or near "'#_levels'" at character 14
+STATEMENT:  CREATE TABLE '#_levels' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	DROP TABLE IF EXISTS '#_compartments';
+ERROR:  syntax error at or near "'#_compartments'" at character 14
+STATEMENT:  CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	DROP TABLE IF EXISTS '#_assets';
+ERROR:  syntax error at or near "'#_assets'" at character 15
+STATEMENT:  CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+		FOREIGN KEY (
+	)
+	DROP TABLE IF EXISTS '#_products';
+	CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "'#_levels'" at character 14
+STATEMENT:  CREATE TABLE '#_levels' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+		FOREIGN KEY (
+	)
+	CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "#" at character 14
+STATEMENT:  CREATE TABLE #_levels (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+		FOREIGN KEY (
+	)
+	CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "'#_levels'" at character 14
+STATEMENT:  CREATE TABLE '#_levels' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "'#_levels'" at character 14
+STATEMENT:  CREATE TABLE '#_levels' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "'#_levels'" at character 14
+STATEMENT:  CREATE TABLE '#_levels' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "'#_levels'" at character 14
+STATEMENT:  CREATE TABLE '#_levels' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	);
+ERROR:  syntax error at or near "'#_compartments'" at character 14
+STATEMENT:  CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	);
+ERROR:  syntax error at or near "'#_assets'" at character 15
+STATEMENT:  CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	);
+ERROR:  syntax error at or near "'#_products'" at character 14
+STATEMENT:  CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	);
+ERROR:  syntax error at or near "'#_levels'" at character 14
+STATEMENT:  CREATE TABLE '#_levels' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "#" at character 14
+STATEMENT:  CREATE TABLE #_levels (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "'id'" at character 24
+STATEMENT:  CREATE TABLE levels (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE '#_compartments' (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  '#_assets' (
+		'asset_pk' int(11) unsigned AUTO_INCREMENT,
+		'asset_tag' int(11),
+		'alt_description' varchar(128),
+		'description' varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE '#_products' (
+		'product_pk' int(11) unsigned AUTO_INCREMENT,
+		'vender' varchar(128),
+		'description' varchar(128),
+		'alt_decription' varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "(" at character 30
+STATEMENT:  CREATE TABLE levels (
+		id int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE compartments (
+		id int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  assets (
+		asset_pk int(11) unsigned AUTO_INCREMENT,
+		asset_tag int(11),
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE products (
+		product_pk int(11) unsigned AUTO_INCREMENT,
+		vender varchar(128),
+		description varchar(128),
+		alt_decription varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "'levels'" at character 14
+STATEMENT:  CREATE TABLE 'levels' (
+		id int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE compartments (
+		id int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  assets (
+		asset_pk int(11) unsigned AUTO_INCREMENT,
+		asset_tag int(11),
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE products (
+		product_pk int(11) unsigned AUTO_INCREMENT,
+		vender varchar(128),
+		description varchar(128),
+		alt_decription varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "'id'" at character 24
+STATEMENT:  CREATE TABLE levels (
+		'id' int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE compartments (
+		id int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  assets (
+		asset_pk int(11) unsigned AUTO_INCREMENT,
+		asset_tag int(11),
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE products (
+		product_pk int(11) unsigned AUTO_INCREMENT,
+		vender varchar(128),
+		description varchar(128),
+		alt_decription varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "(" at character 30
+STATEMENT:  CREATE TABLE levels (
+		id int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE compartments (
+		id int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  assets (
+		asset_pk int(11) unsigned AUTO_INCREMENT,
+		asset_tag int(11),
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE products (
+		product_pk int(11) unsigned AUTO_INCREMENT,
+		vender varchar(128),
+		description varchar(128),
+		alt_decription varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "unsigned" at character 31
+STATEMENT:  CREATE TABLE levels (
+		id int unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE compartments (
+		id int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  assets (
+		asset_pk int(11) unsigned AUTO_INCREMENT,
+		asset_tag int(11),
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE products (
+		product_pk int(11) unsigned AUTO_INCREMENT,
+		vender varchar(128),
+		description varchar(128),
+		alt_decription varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "'id'" at character 46
+STATEMENT:  CREATE TABLE levels (
+		id int,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE compartments (
+		id int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  assets (
+		asset_pk int(11) unsigned AUTO_INCREMENT,
+		asset_tag int(11),
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE products (
+		product_pk int(11) unsigned AUTO_INCREMENT,
+		vender varchar(128),
+		description varchar(128),
+		alt_decription varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "CREATE" at character 52
+STATEMENT:  CREATE TABLE levels (
+		id int,
+		PRIMARY KEY (id)
+	)
+	CREATE TABLE compartments (
+		id int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  assets (
+		asset_pk int(11) unsigned AUTO_INCREMENT,
+		asset_tag int(11),
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE products (
+		product_pk int(11) unsigned AUTO_INCREMENT,
+		vender varchar(128),
+		description varchar(128),
+		alt_decription varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  syntax error at or near "(" at character 36
+STATEMENT:  CREATE TABLE compartments (
+		id int(11) unsigned AUTO_INCREMENT,
+		PRIMARY KEY ('id')
+	)
+	CREATE TABLE  assets (
+		asset_pk int(11) unsigned AUTO_INCREMENT,
+		asset_tag int(11),
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY ('asset_pk'),
+	)
+	CREATE TABLE products (
+		product_pk int(11) unsigned AUTO_INCREMENT,
+		vender varchar(128),
+		description varchar(128),
+		alt_decription varchar(128),
+		PRIMARY KEY ('asset_pk')
+	)
+ERROR:  relation "levels" already exists
+STATEMENT:  CREATE TABLE levels (
+		id int,
+		PRIMARY KEY (id)
+	);
+ERROR:  syntax error at or near ")" at character 138
+STATEMENT:  CREATE TABLE  assets (
+		asset_pk int,
+		asset_tag int,
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY (asset_pk),
+	);
+ERROR:  column "asset_pk" named in key does not exist at character 122
+STATEMENT:  CREATE TABLE products (
+		product_pk int,
+		vender varchar(128),
+		description varchar(128),
+		alt_decription varchar(128),
+		PRIMARY KEY (asset_pk)
+	);
+ERROR:  relation "compartments" already exists
+STATEMENT:  CREATE TABLE compartments (
+		id int,
+		PRIMARY KEY (id)
+	);
+ERROR:  syntax error at or near ")" at character 138
+STATEMENT:  CREATE TABLE  assets (
+		asset_pk int,
+		asset_tag int,
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY (asset_pk),
+	);
+ERROR:  syntax error at or near ")" at character 151
+STATEMENT:  CREATE TABLE IF NOT EXISTS assets (
+		asset_pk int,
+		asset_tag int,
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY (asset_pk),
+	);
+ERROR:  syntax error at or near "/" at character 1
+STATEMENT:  /dt
+	SELECT * FROM levels;
+ERROR:  syntax error at or near ")" at character 151
+STATEMENT:  CREATE TABLE IF NOT EXISTS assets (
+		asset_pk int,
+		asset_tag int,
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY (asset_pk),
+	);
+ERROR:  syntax error at or near "," at character 63
+STATEMENT:  CREATE TABLE IF NOT EXISTS assets (
+		asset_pk int,
+		product_fk,
+		asset_tag int,
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY (asset_pk),
+		FOREIGN KEY (product_fk)
+	);
+ERROR:  syntax error at or near ")" at character 124
+STATEMENT:  CREATE TABLE IF NOT EXISTS vehicles (
+		vehicles_pk int,
+		asset_fk int,
+		PRIMARY KEY (vehicles_pk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "," at character 129
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_at (
+		asset_fk int,
+		facility_fk int,
+		arrive_dt Date,
+		depart_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near ")" at character 191
+STATEMENT:  CREATE TABLE IF NOT EXISTS convys (
+		convoy_pk int,
+		request varchar(128),
+		source_fk int,
+		dest_fk int,
+		depart_dt Date,
+		arrive_dt Date,
+		PRIMARY KEY (convoy_pk),
+		FOREIGN KEY (source_fk)
+	);
+ERROR:  syntax error at or near "," at character 95
+STATEMENT:  CREATE TABLE IF NOT EXISTS used_by (
+		vehicle_fk int,
+		convy_fk int,
+		FOREIGN KEY (vehicle_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 125
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_on (
+		asset_fk int,
+		convoy_fk int,
+		load_dt Date,
+		unload_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 88
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_is (
+		user_fk int,
+		role_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (role_fk)
+	);
+ERROR:  syntax error at or near "," at character 98
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_supports (
+		user_fk int,
+		facility_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near "," at character 133
+STATEMENT:  CREATE TABLE IF NOT EXISTS security_tags (
+		tag_pk int,
+		level_fk int,
+		compartment_fk int,
+		user_fk int,
+		product_fk int,
+		asset_fk,
+		PRIMARY KEY (tag_pk),
+		FOREIGN KEY (level_fk),
+		FOREIGN KEY (compartment_fk),
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (product_fk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near ")" at character 194
+STATEMENT:  CREATE TABLE IF NOT EXISTS assets (
+		asset_pk int,
+		product_fk int,
+		asset_tag int,
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY (asset_pk),
+		FOREIGN KEY (product_fk)
+	);
+ERROR:  syntax error at or near ")" at character 124
+STATEMENT:  CREATE TABLE IF NOT EXISTS vehicles (
+		vehicles_pk int,
+		asset_fk int,
+		PRIMARY KEY (vehicles_pk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "," at character 129
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_at (
+		asset_fk int,
+		facility_fk int,
+		arrive_dt Date,
+		depart_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near ")" at character 191
+STATEMENT:  CREATE TABLE IF NOT EXISTS convys (
+		convoy_pk int,
+		request varchar(128),
+		source_fk int,
+		dest_fk int,
+		depart_dt Date,
+		arrive_dt Date,
+		PRIMARY KEY (convoy_pk),
+		FOREIGN KEY (source_fk)
+	);
+ERROR:  syntax error at or near "," at character 95
+STATEMENT:  CREATE TABLE IF NOT EXISTS used_by (
+		vehicle_fk int,
+		convy_fk int,
+		FOREIGN KEY (vehicle_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 125
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_on (
+		asset_fk int,
+		convoy_fk int,
+		load_dt Date,
+		unload_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 88
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_is (
+		user_fk int,
+		role_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (role_fk)
+	);
+ERROR:  syntax error at or near "," at character 98
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_supports (
+		user_fk int,
+		facility_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near "," at character 133
+STATEMENT:  CREATE TABLE IF NOT EXISTS security_tags (
+		tag_pk int,
+		level_fk int,
+		compartment_fk int,
+		user_fk int,
+		product_fk int,
+		asset_fk,
+		PRIMARY KEY (tag_pk),
+		FOREIGN KEY (level_fk),
+		FOREIGN KEY (compartment_fk),
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (product_fk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near ")" at character 194
+STATEMENT:  CREATE TABLE IF NOT EXISTS assets (
+		asset_pk int,
+		product_fk int,
+		asset_tag int,
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY (asset_pk),
+		FOREIGN KEY (product_fk)
+	);
+ERROR:  syntax error at or near ")" at character 124
+STATEMENT:  CREATE TABLE IF NOT EXISTS vehicles (
+		vehicles_pk int,
+		asset_fk int,
+		PRIMARY KEY (vehicles_pk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "," at character 129
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_at (
+		asset_fk int,
+		facility_fk int,
+		arrive_dt Date,
+		depart_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near ")" at character 191
+STATEMENT:  CREATE TABLE IF NOT EXISTS convys (
+		convoy_pk int,
+		request varchar(128),
+		source_fk int,
+		dest_fk int,
+		depart_dt Date,
+		arrive_dt Date,
+		PRIMARY KEY (convoy_pk),
+		FOREIGN KEY (source_fk)
+	);
+ERROR:  syntax error at or near "," at character 95
+STATEMENT:  CREATE TABLE IF NOT EXISTS used_by (
+		vehicle_fk int,
+		convy_fk int,
+		FOREIGN KEY (vehicle_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 125
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_on (
+		asset_fk int,
+		convoy_fk int,
+		load_dt Date,
+		unload_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 88
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_is (
+		user_fk int,
+		role_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (role_fk)
+	);
+ERROR:  syntax error at or near "," at character 98
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_supports (
+		user_fk int,
+		facility_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near "," at character 185
+STATEMENT:  CREATE TABLE IF NOT EXISTS security_tags (
+		tag_pk int,
+		level_fk int,
+		compartment_fk int,
+		user_fk int,
+		product_fk int,
+		asset_fk int,
+		PRIMARY KEY (tag_pk),
+		FOREIGN KEY (level_fk),
+		FOREIGN KEY (compartment_fk),
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (product_fk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near ")" at character 194
+STATEMENT:  CREATE TABLE IF NOT EXISTS assets (
+		asset_pk int,
+		product_fk int,
+		asset_tag int,
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY (asset_pk),
+		FOREIGN KEY (product_fk)
+	);
+ERROR:  syntax error at or near ")" at character 124
+STATEMENT:  CREATE TABLE IF NOT EXISTS vehicles (
+		vehicles_pk int,
+		asset_fk int,
+		PRIMARY KEY (vehicles_pk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "," at character 129
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_at (
+		asset_fk int,
+		facility_fk int,
+		arrive_dt Date,
+		depart_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near ")" at character 191
+STATEMENT:  CREATE TABLE IF NOT EXISTS convys (
+		convoy_pk int,
+		request varchar(128),
+		source_fk int,
+		dest_fk int,
+		depart_dt Date,
+		arrive_dt Date,
+		PRIMARY KEY (convoy_pk),
+		FOREIGN KEY (source_fk)
+	);
+ERROR:  syntax error at or near "," at character 95
+STATEMENT:  CREATE TABLE IF NOT EXISTS used_by (
+		vehicle_fk int,
+		convy_fk int,
+		FOREIGN KEY (vehicle_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 125
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_on (
+		asset_fk int,
+		convoy_fk int,
+		load_dt Date,
+		unload_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 88
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_is (
+		user_fk int,
+		role_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (role_fk)
+	);
+ERROR:  syntax error at or near "," at character 98
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_supports (
+		user_fk int,
+		facility_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near "," at character 185
+STATEMENT:  CREATE TABLE IF NOT EXISTS security_tags (
+		tag_pk int,
+		level_fk int,
+		compartment_fk int,
+		user_fk int,
+		product_fk int,
+		asset_fk int,
+		PRIMARY KEY (tag_pk),
+		FOREIGN KEY (level_fk),
+		FOREIGN KEY (compartment_fk),
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (product_fk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "SELECT" at character 29
+STATEMENT:  SELECT * FROM security_tags
+	SELECT * FROM products;
+ERROR:  relation "security_tags" does not exist at character 15
+STATEMENT:  SELECT * FROM security_tags;
+ERROR:  relation "asset_on" does not exist at character 15
+STATEMENT:  SELECT * FROM asset_on;
+ERROR:  relation "asset_on" does not exist at character 15
+STATEMENT:  SELECT * FROM asset_on;
+ERROR:  syntax error at or near "foreign" at character 68
+STATEMENT:  CREATE TABLE IF NOT EXISTS assets (
+		asset_pk int,
+		product_fk int foreign key,
+		asset_tag int,
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY (asset_pk)
+	);
+ERROR:  syntax error at or near ")" at character 124
+STATEMENT:  CREATE TABLE IF NOT EXISTS vehicles (
+		vehicles_pk int,
+		asset_fk int,
+		PRIMARY KEY (vehicles_pk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "," at character 129
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_at (
+		asset_fk int,
+		facility_fk int,
+		arrive_dt Date,
+		depart_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near ")" at character 192
+STATEMENT:  CREATE TABLE IF NOT EXISTS convoys (
+		convoy_pk int,
+		request varchar(128),
+		source_fk int,
+		dest_fk int,
+		depart_dt Date,
+		arrive_dt Date,
+		PRIMARY KEY (convoy_pk),
+		FOREIGN KEY (source_fk)
+	);
+ERROR:  syntax error at or near "," at character 95
+STATEMENT:  CREATE TABLE IF NOT EXISTS used_by (
+		vehicle_fk int,
+		convy_fk int,
+		FOREIGN KEY (vehicle_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 125
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_on (
+		asset_fk int,
+		convoy_fk int,
+		load_dt Date,
+		unload_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 88
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_is (
+		user_fk int,
+		role_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (role_fk)
+	);
+ERROR:  syntax error at or near "," at character 98
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_supports (
+		user_fk int,
+		facility_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near "," at character 185
+STATEMENT:  CREATE TABLE IF NOT EXISTS security_tags (
+		tag_pk int,
+		level_fk int,
+		compartment_fk int,
+		user_fk int,
+		product_fk int,
+		asset_fk int,
+		PRIMARY KEY (tag_pk),
+		FOREIGN KEY (level_fk),
+		FOREIGN KEY (compartment_fk),
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (product_fk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  relation "product_fk" does not exist
+STATEMENT:  CREATE TABLE IF NOT EXISTS assets (
+		asset_pk int REFERENCES product_fk,
+		product_fk int,
+		asset_tag int,
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY (asset_pk)
+	);
+ERROR:  syntax error at or near ")" at character 124
+STATEMENT:  CREATE TABLE IF NOT EXISTS vehicles (
+		vehicles_pk int,
+		asset_fk int,
+		PRIMARY KEY (vehicles_pk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "," at character 129
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_at (
+		asset_fk int,
+		facility_fk int,
+		arrive_dt Date,
+		depart_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near ")" at character 192
+STATEMENT:  CREATE TABLE IF NOT EXISTS convoys (
+		convoy_pk int,
+		request varchar(128),
+		source_fk int,
+		dest_fk int,
+		depart_dt Date,
+		arrive_dt Date,
+		PRIMARY KEY (convoy_pk),
+		FOREIGN KEY (source_fk)
+	);
+ERROR:  syntax error at or near "," at character 95
+STATEMENT:  CREATE TABLE IF NOT EXISTS used_by (
+		vehicle_fk int,
+		convy_fk int,
+		FOREIGN KEY (vehicle_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 125
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_on (
+		asset_fk int,
+		convoy_fk int,
+		load_dt Date,
+		unload_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 88
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_is (
+		user_fk int,
+		role_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (role_fk)
+	);
+ERROR:  syntax error at or near "," at character 98
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_supports (
+		user_fk int,
+		facility_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near "," at character 185
+STATEMENT:  CREATE TABLE IF NOT EXISTS security_tags (
+		tag_pk int,
+		level_fk int,
+		compartment_fk int,
+		user_fk int,
+		product_fk int,
+		asset_fk int,
+		PRIMARY KEY (tag_pk),
+		FOREIGN KEY (level_fk),
+		FOREIGN KEY (compartment_fk),
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (product_fk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 168
+STATEMENT:  CREATE TABLE IF NOT EXISTS assets (
+		asset_pk int,
+		product_fk int,
+		asset_tag int,
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY (asset_pk)
+		FOREIGN KEY (product_fk)
+	);
+ERROR:  syntax error at or near ")" at character 124
+STATEMENT:  CREATE TABLE IF NOT EXISTS vehicles (
+		vehicles_pk int,
+		asset_fk int,
+		PRIMARY KEY (vehicles_pk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "," at character 129
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_at (
+		asset_fk int,
+		facility_fk int,
+		arrive_dt Date,
+		depart_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near ")" at character 192
+STATEMENT:  CREATE TABLE IF NOT EXISTS convoys (
+		convoy_pk int,
+		request varchar(128),
+		source_fk int,
+		dest_fk int,
+		depart_dt Date,
+		arrive_dt Date,
+		PRIMARY KEY (convoy_pk),
+		FOREIGN KEY (source_fk)
+	);
+ERROR:  syntax error at or near "," at character 95
+STATEMENT:  CREATE TABLE IF NOT EXISTS used_by (
+		vehicle_fk int,
+		convy_fk int,
+		FOREIGN KEY (vehicle_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 125
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_on (
+		asset_fk int,
+		convoy_fk int,
+		load_dt Date,
+		unload_dt Date,
+		FOREIGN KEY (asset_fk),
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "," at character 88
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_is (
+		user_fk int,
+		role_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (role_fk)
+	);
+ERROR:  syntax error at or near "," at character 98
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_supports (
+		user_fk int,
+		facility_fk int,
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near "," at character 185
+STATEMENT:  CREATE TABLE IF NOT EXISTS security_tags (
+		tag_pk int,
+		level_fk int,
+		compartment_fk int,
+		user_fk int,
+		product_fk int,
+		asset_fk int,
+		PRIMARY KEY (tag_pk),
+		FOREIGN KEY (level_fk),
+		FOREIGN KEY (compartment_fk),
+		FOREIGN KEY (user_fk),
+		FOREIGN KEY (product_fk),
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 168
+STATEMENT:  CREATE TABLE IF NOT EXISTS assets (
+		asset_pk int,
+		product_fk int,
+		asset_tag int,
+		alt_description varchar(128),
+		description varchar(128),
+		PRIMARY KEY (asset_pk)
+		FOREIGN KEY (product_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 100
+STATEMENT:  CREATE TABLE IF NOT EXISTS vehicles (
+		vehicles_pk int,
+		asset_fk int,
+		PRIMARY KEY (vehicles_pk)
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 131
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_at (
+		asset_fk int,
+		facility_fk int,
+		arrive_dt Date,
+		depart_dt Date,
+		FOREIGN KEY (asset_fk)
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 167
+STATEMENT:  CREATE TABLE IF NOT EXISTS convoys (
+		convoy_pk int,
+		request varchar(128),
+		source_fk int,
+		dest_fk int,
+		depart_dt Date,
+		arrive_dt Date,
+		PRIMARY KEY (convoy_pk)
+		FOREIGN KEY (source_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 97
+STATEMENT:  CREATE TABLE IF NOT EXISTS used_by (
+		vehicle_fk int,
+		convy_fk int,
+		FOREIGN KEY (vehicle_fk)
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 127
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_on (
+		asset_fk int,
+		convoy_fk int,
+		load_dt Date,
+		unload_dt Date,
+		FOREIGN KEY (asset_fk)
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 90
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_is (
+		user_fk int,
+		role_fk int,
+		FOREIGN KEY (user_fk)
+		FOREIGN KEY (role_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 100
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_supports (
+		user_fk int,
+		facility_fk int,
+		FOREIGN KEY (user_fk)
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 162
+STATEMENT:  CREATE TABLE IF NOT EXISTS security_tags (
+		tag_pk int,
+		level_fk int,
+		compartment_fk int,
+		user_fk int,
+		product_fk int,
+		asset_fk int,
+		PRIMARY KEY (tag_pk)
+		FOREIGN KEY (level_fk)
+		FOREIGN KEY (compartment_fk)
+		FOREIGN KEY (user_fk)
+		FOREIGN KEY (product_fk)
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 100
+STATEMENT:  CREATE TABLE IF NOT EXISTS vehicles (
+		vehicles_pk int,
+		asset_fk int,
+		PRIMARY KEY (vehicles_pk)
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 131
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_at (
+		asset_fk int,
+		facility_fk int,
+		arrive_dt Date,
+		depart_dt Date,
+		FOREIGN KEY (asset_fk)
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 167
+STATEMENT:  CREATE TABLE IF NOT EXISTS convoys (
+		convoy_pk int,
+		request varchar(128),
+		source_fk int,
+		dest_fk int,
+		depart_dt Date,
+		arrive_dt Date,
+		PRIMARY KEY (convoy_pk)
+		FOREIGN KEY (source_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 97
+STATEMENT:  CREATE TABLE IF NOT EXISTS used_by (
+		vehicle_fk int,
+		convy_fk int,
+		FOREIGN KEY (vehicle_fk)
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 127
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_on (
+		asset_fk int,
+		convoy_fk int,
+		load_dt Date,
+		unload_dt Date,
+		FOREIGN KEY (asset_fk)
+		FOREIGN KEY (convoy_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 90
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_is (
+		user_fk int,
+		role_fk int,
+		FOREIGN KEY (user_fk)
+		FOREIGN KEY (role_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 100
+STATEMENT:  CREATE TABLE IF NOT EXISTS user_supports (
+		user_fk int,
+		facility_fk int,
+		FOREIGN KEY (user_fk)
+		FOREIGN KEY (facility_fk)
+	);
+ERROR:  syntax error at or near "FOREIGN" at character 162
+STATEMENT:  CREATE TABLE IF NOT EXISTS security_tags (
+		tag_pk int,
+		level_fk int,
+		compartment_fk int,
+		user_fk int,
+		product_fk int,
+		asset_fk int,
+		PRIMARY KEY (tag_pk)
+		FOREIGN KEY (level_fk)
+		FOREIGN KEY (compartment_fk)
+		FOREIGN KEY (user_fk)
+		FOREIGN KEY (product_fk)
+		FOREIGN KEY (asset_fk)
+	);
+ERROR:  relation "sources" does not exist
+STATEMENT:  CREATE TABLE IF NOT EXISTS convoys (
+		convoy_pk int,
+		request varchar(128),
+		source_fk int,
+		dest_fk int,
+		depart_dt Date,
+		arrive_dt Date,
+		PRIMARY KEY (convoy_pk),
+		FOREIGN KEY (source_fk) REFERENCES sources
+	);
+ERROR:  relation "convoys" does not exist
+STATEMENT:  CREATE TABLE IF NOT EXISTS used_by (
+		vehicle_fk int,
+		convy_fk int,
+		FOREIGN KEY (vehicle_fk) REFERENCES vehicles,
+		FOREIGN KEY (convoy_fk) REFERENCES convoys
+	);
+ERROR:  relation "convoys" does not exist
+STATEMENT:  CREATE TABLE IF NOT EXISTS asset_on (
+		asset_fk int,
+		convoy_fk int,
+		load_dt Date,
+		unload_dt Date,
+		FOREIGN KEY (asset_fk) REFERENCES assets,
+		FOREIGN KEY (convoy_fk) REFERENCES convoys
+	);
+ERROR:  cannot drop table levels because other objects depend on it
+DETAIL:  constraint security_tags_level_fk_fkey on table security_tags depends on table levels
+HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+STATEMENT:  DROP TABLE levels;
+ERROR:  cannot drop table compartments because other objects depend on it
+DETAIL:  constraint security_tags_compartment_fk_fkey on table security_tags depends on table compartments
+HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+STATEMENT:  DROP TABLE compartments;
+ERROR:  column "convoy_fk" referenced in foreign key constraint does not exist
+STATEMENT:  CREATE TABLE IF NOT EXISTS used_by (
+		vehicle_fk int,
+		convy_fk int,
+		FOREIGN KEY (vehicle_fk) REFERENCES vehicles,
+		FOREIGN KEY (convoy_fk) REFERENCES convoys
+	);
+ERROR:  cannot drop table levels because other objects depend on it
+DETAIL:  constraint security_tags_level_fk_fkey on table security_tags depends on table levels
+HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+STATEMENT:  DROP TABLE levels;
+ERROR:  cannot drop table compartments because other objects depend on it
+DETAIL:  constraint security_tags_compartment_fk_fkey on table security_tags depends on table compartments
+HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+STATEMENT:  DROP TABLE compartments;
