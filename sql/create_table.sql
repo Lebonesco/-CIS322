@@ -1,11 +1,9 @@
-DROP TABLE levels;
 CREATE TABLE IF NOT EXISTS levels (
 	level_pk int,
 	abbrv varchar(128),
 	PRIMARY KEY (level_pk)
 );
 
-DROP TABLE compartments;
 CREATE TABLE IF NOT EXISTS compartments (
 	compartment_pk int,
 	abbrv varchar(128),
@@ -16,7 +14,7 @@ CREATE TABLE IF NOT EXISTS compartments (
 CREATE TABLE IF NOT EXISTS assets (
 	asset_pk int,
 	product_fk int,
-	asset_tag int,
+	asset_tag varchar(128),
 	alt_description varchar(128),
 	description varchar(128),
 	PRIMARY KEY (asset_pk),
@@ -25,9 +23,9 @@ CREATE TABLE IF NOT EXISTS assets (
 
 CREATE TABLE IF NOT EXISTS products (
 	product_pk int,
-	vender varchar(128),
+	vendor varchar(128),
 	description varchar(128),
-	alt_decription varchar(128),
+	alt_description varchar(128),
 	PRIMARY KEY (product_pk)
 );
 
