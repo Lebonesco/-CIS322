@@ -16,7 +16,6 @@ def main():
     for file in files:
         try:
             lines = csv.reader(file, delimiter=',')
-            print(file.name)
             if "inventory" in file.name:
                 inventory(lines)
                 print("*****************************************")
@@ -30,15 +29,30 @@ def main():
 def transit(lines):
     header = next(lines)
     for row in lines:
-        pass
+        print(cursor.execute("SELECT asset_tag FROM assets WHERE asset_pk=3;"))
+        if(cursor.execute("SELECT count(1) FROM facilities WHERE common_name="+"'"+row[1]+"'"+";") == 0):
+            print("testing")
+            insert("facilities", ["common_name", "depart_dt"], [row[1], row[3]])
+        
+        if(cursor.execute("SELECT count(1) FROM facilities WHERE common_name="+"'"+row[2]+"'"+";") == 0):
+            insert("facilities", ["common_name", "arrive_at"], [row[2], row[4]])
+            print("testign2")
+        if(cursor.execute("SELECT count(1) FROM assets WHERE asset_tag="+"'"+row[0]+"'"+";") == 0):
+            insert("assets", ["asset_tag", "description"], [row[0], row[6]])
+            print("testing3")
+        asset_fk = cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag="+"'"+row[0]+"'"+";")
+        facility_fk1 = cursor.execute("SELECT facility_pk FROM facilities WHERE common_name="+"'"+row[1]+"'" +";")
+        facility_fk2 = cursor.execute("SELECT facility_pk FROM facilities WHERE common_name="+"'"+row[2]+"'"+";")
+        
+        print(asset_fk)
+        insert("asset_at", ["asset_fk", "facility_fk", "depart_dt"], [asset_fk, facility_fk2, row[4]])
+        insert("asset_at", ["asset_fk", "facility_fk", "arrive_dt"], [asset_fk, facility_fk1, row[3]]) 
 
 def inventory(lines):
     header = next(lines)
     for row in lines:
-        product_pk = generatePrimary("product_pk")
-        asset_pk = generatePrimary("asset_pk")
-        insert("products", ["product_pk", "description"], [product_pk, row[1]])
-        insert("assets", ["asset_pk","product_fk", "asset_tag"], [asset_pk, product_pk, row[0]])
+        insert("products", ["description"], [row[1]])
+        insert("assets", ["asset_tag"], [row[0]])
 
 def insert(table, keys, values):
     global cursor
@@ -61,8 +75,7 @@ def insert(table, keys, values):
 def product_list(lines):
     header = next(lines)
     for row in lines:
-        product_pk = generatePrimary("product_pk")
-        insert("products", ["product_pk", "vendor", "description", "alt_description"], [product_pk, row[4], row[2], row[1]])
+        insert("products", ["vendor", "description", "alt_description"], [row[4], row[2], row[1]])
 
 def load(fileDirectory):
     files = []
@@ -77,9 +90,6 @@ def connect():
 
     conn = psycopg2.connect(connection)
     cursor = conn.cursor()
-
-def generatePrimary(string):
-    return random.random()*(10**8)
 
 if __name__ == '__main__':
     main()
