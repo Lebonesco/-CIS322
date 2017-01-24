@@ -2,14 +2,13 @@ import os
 import csv 
 import psycopg2
 import random
+import sys
 
-db_name = "lost"
-port = 5432
 cursor = None
 conn = None
 
-def main():
-    connect()
+def main(db_name, port):
+    connect(db_name, port)
     fileDirectory = os.path.dirname(os.path.abspath(__file__)) + "/osnap_legacy"
     files = load(fileDirectory)
     itemLocation = {}
@@ -23,7 +22,8 @@ def main():
             elif "product_list" in file.name:
                 product_list(lines)
             elif "transit" in file.name:
-                transit(lines)
+                pass
+                #transit(lines)
         except Exception as e:
             print("Error: " + str(e))
 
@@ -100,7 +100,7 @@ def load(fileDirectory):
         files.append(open(fileDirectory + "/" + filename, "r"))
     return files
 
-def connect():
+def connect(db_name, port):
     global cursor
     global conn
     connection = "host='localhost' port='" + str(port) + "' dbname='" + db_name + "' user='osnapdev' password='secret'"
@@ -109,4 +109,7 @@ def connect():
     cursor = conn.cursor()
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) < 3:
+        print("missing arguments. Try again.")
+    else:
+        main(sys.argv[1], sys.argv[2])

@@ -1380,3 +1380,315 @@ ERROR:  cannot drop table compartments because other objects depend on it
 DETAIL:  constraint security_tags_compartment_fk_fkey on table security_tags depends on table compartments
 HINT:  Use DROP ... CASCADE to drop the dependent objects too.
 STATEMENT:  DROP TABLE compartments;
+LOG:  database system was shut down at 2017-01-24 05:31:02 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "osnapdev" does not exist
+FATAL:  database "test_user" does not exist
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "none" does not exist at character 63
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES (None,None,'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "dc15467299" does not exist at character 45
+STATEMENT:  SELECT asset_pk FROM assets WHERE asset_tag=DC15467299
+	;
+ERROR:  operator does not exist: character varying = integer at character 44
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+STATEMENT:  SELECT asset_pk FROM assets WHERE asset_tag=5
+	;
+ERROR:  column "test" does not exist at character 45
+STATEMENT:  SELECT asset_pk FROM assets WHERE asset_tag=test
+	;
+ERROR:  column "depart_dt" of relation "facilities" does not exist at character 37
+STATEMENT:  INSERT INTO facilities (common_name,depart_dt) VALUES ('MB 005','1/4/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  syntax error at or near ")" at character 67
+STATEMENT:  INSERT INTO asset_at (asset_fk,facility_fk,depart_dt) VALUES ((65,),(9,),'1/7/17');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Red Lion');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('Olivine basalt ');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('notepad');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('1 L H2O x1872');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (description) VALUES ('50 mm film');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "dc15467299" does not exist at character 45
+STATEMENT:  SELECT asset_pk FROM assets WHERE asset_tag=DC15467299;
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO facilities (fcode) VALUES ('HQ_inventory');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO facilities (fcode) VALUES ('NC_inventory');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO facilities (fcode) VALUES ('MB005_inventory');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO facilities (fcode) VALUES ('SPNV_inventory');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  column "dc_inventory" does not exist at character 48
+STATEMENT:  SELECT facility_pk FROM facilities WHERE fcode=DC_inventory;
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO facilities (fcode) VALUES ('HQ_inventory');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO facilities (fcode) VALUES ('NC_inventory');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO facilities (fcode) VALUES ('MB005_inventory');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO facilities (fcode) VALUES ('SPNV_inventory');
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  INSERT INTO products (vendor,description,alt_description) VALUES ('big n large','1L H2O vergeze spring fed','spring');
+ERROR:  database "lost" already exists
+STATEMENT:  CREATE DATABASE lost;
+FATAL:  database "create_table.sql" does not exist
+FATAL:  role "create_table.sql" does not exist
+FATAL:  database "create_table.sql" does not exist
+ERROR:  column aa.asset_pk does not exist at character 70
+HINT:  Perhaps you meant to reference the column "a.asset_pk" or the column "aa.asset_fk".
+STATEMENT:  SELECT fcode, asset_tag FROM assets a JOIN asset_at aa ON a.asset_pk=aa.asset_pk JOIN facilities f ON aa.asset_fk=f.facility_pk
+	;
+ERROR:  column f.facility_fk does not exist at character 115
+HINT:  Perhaps you meant to reference the column "f.facility_pk".
+STATEMENT:  SELECT fcode, asset_tag FROM assets a JOIN asset_at aa ON a.asset_pk=aa.asset_fk JOIN facilities f ON aa.asset_fk=f.facility_fk
+	;
+ERROR:  column f.facility_fk does not exist at character 115
+HINT:  Perhaps you meant to reference the column "f.facility_pk".
+STATEMENT:  SELECT fcode, asset_tag FROM assets a JOIN asset_at aa ON a.asset_pk=aa.asset_fk JOIN facilities f ON aa.asset_fk=f.facility_fk
+	;
+FATAL:  role "create_table.sql" does not exist
+ERROR:  column a.asset_fk does not exist at character 60
+HINT:  Perhaps you meant to reference the column "a.asset_pk" or the column "aa.asset_fk".
+STATEMENT:  SELECT fcode,asset_tag 
+	FROM assets a
+	JOIN asset_at aa  ON a.asset_fk=aa.asset_pk
+	JOIN facilities f ON aa.asset_fk=f.facility_pk;
+ERROR:  column a.asset_fk does not exist at character 60
+HINT:  Perhaps you meant to reference the column "a.asset_pk" or the column "aa.asset_fk".
+STATEMENT:  SELECT fcode,asset_tag 
+	FROM assets a
+	JOIN asset_at aa  ON a.asset_fk=aa.asset_pk
+	JOIN facilities f ON aa.asset_pk=f.facility_fk;
+ERROR:  column a.asset_fk does not exist at character 60
+HINT:  Perhaps you meant to reference the column "a.asset_pk" or the column "aa.asset_fk".
+STATEMENT:  SELECT fcode,asset_tag 
+	FROM assets a
+	JOIN asset_at aa  ON a.asset_fk=aa.asset_pk
+	JOIN facilities f ON aa.facility_pk=f.facility_fk;
+ERROR:  column aa.asset_pk does not exist at character 71
+HINT:  Perhaps you meant to reference the column "a.asset_pk" or the column "aa.asset_fk".
+STATEMENT:  SELECT fcode,asset_tag 
+	FROM assets a
+	JOIN asset_at aa  ON a.asset_pk=aa.asset_pk
+	JOIN facilities f ON aa.facility_pk=f.facility_fk;
+ERROR:  column aa.facility_pk does not exist at character 104
+HINT:  Perhaps you meant to reference the column "aa.facility_fk".
+STATEMENT:  SELECT fcode,asset_tag 
+	FROM assets a
+	JOIN asset_at aa  ON a.asset_pk=aa.asset_fk
+	JOIN facilities f ON aa.facility_pk=f.facility_fk;
