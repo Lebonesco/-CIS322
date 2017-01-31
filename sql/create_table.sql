@@ -45,8 +45,8 @@ CREATE TABLE IF NOT EXISTS asset_at (
 CREATE TABLE IF NOT EXISTS convoys (
 	convoy_pk SERIAL PRIMARY KEY,
 	request varchar(128),
-	source_fk integer REFERENCES facilities(facility_pk),
-	dest_fk integer REFERENCES facilities(facility_pk),
+	source_fk varchar,
+	dest_fk varchar,
 	depart_dt Date,
 	arrive_dt Date
 );

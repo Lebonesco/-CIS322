@@ -27,6 +27,30 @@ def main(db_name, port):
         except Exception as e:
             print("Error: " + str(e))
 
+
+
+
+    insert("convoys", ['source_fk', 'dest_fk', 'depart_dt', 'arrive_dt'],['MB 005', 'Headquarters', '1/4/2017', '1/7/2017'])
+    insert("convoys", ['source_fk', 'dest_fk', 'depart_dt', 'arrive_dt'],['Site 300', 'Headquarters', '1/8/2017', '1/8/2017'])
+    insert("convoys", ['source_fk', 'dest_fk', 'depart_dt', 'arrive_dt'],['Groom Lake', 'Headquarters', '1/8/2017', '1/8/2017'])
+    insert("convoys", ['source_fk', 'dest_fk', 'depart_dt', 'arrive_dt'],['Los Alamos, NM', 'Headquarters', 'NULL', 'NULL'])
+
+    cursor.execute("SELECT convoy_pk FROM convoys WHERE dest_fk='MB 005' AND source_fk='Headquarters';")
+    convoy_pk = cursor.fetchone()
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA154672';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk, convoy_pk])
+
+        
+    cursor.execute("SELECT convoy_pk FROM convoys WHERE dest_fk='Site 300' AND source_fk='Headquarters';")
+    convoy_pk = cursor.fetchone()
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA154672';")
+    asset_pk = cursor.fetchone
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk, convoy_pk])
+
+
+
+
 def facility(name):
     insert("facilities", ["fcode"], [name])
 
@@ -85,7 +109,7 @@ def insert(table, keys, values):
         if i < len(values) - 1:
             valueResult += ","
     
-   # print("INSERT INTO {} ({}) VALUES ({});".format(table, ",".join(keys), valueResult))
+    print("INSERT INTO {} ({}) VALUES ({});".format(table, ",".join(keys), valueResult))
     cursor.execute("INSERT INTO {} ({}) VALUES ({});".format(table, ",".join(keys), valueResult))
     conn.commit()
 
