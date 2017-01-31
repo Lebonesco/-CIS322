@@ -31,22 +31,134 @@ def main(db_name, port):
 
 
     insert("convoys", ['source_fk', 'dest_fk', 'depart_dt', 'arrive_dt'],['MB 005', 'Headquarters', '1/4/2017', '1/7/2017'])
-    insert("convoys", ['source_fk', 'dest_fk', 'depart_dt', 'arrive_dt'],['Site 300', 'Headquarters', '1/8/2017', '1/8/2017'])
-    insert("convoys", ['source_fk', 'dest_fk', 'depart_dt', 'arrive_dt'],['Groom Lake', 'Headquarters', '1/8/2017', '1/8/2017'])
-    insert("convoys", ['source_fk', 'dest_fk', 'depart_dt', 'arrive_dt'],['Los Alamos, NM', 'Headquarters', 'NULL', 'NULL'])
+    insert("convoys", ['source_fk', 'dest_fk', 'depart_dt', 'arrive_dt'],['Site 300', 'National City', '1/8/2017', '1/8/2017'])
+    insert("convoys", ['source_fk', 'dest_fk', 'depart_dt', 'arrive_dt'],['Groom Lake', 'Sparks, NV', '1/8/2017', '1/8/2017'])
+    insert("convoys", ['source_fk', 'dest_fk', 'depart_dt', 'arrive_dt'],['Los Alamos', 'Washington', '1/1/1980', '1/1/2030'])
 
-    cursor.execute("SELECT convoy_pk FROM convoys WHERE dest_fk='MB 005' AND source_fk='Headquarters';")
+    cursor.execute("SELECT convoy_pk FROM convoys WHERE source_fk='MB 005' AND dest_fk='Headquarters';")
     convoy_pk = cursor.fetchone()
-    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA154672';")
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='CA15467287';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['CA15467287'])
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA15467287';")
     asset_pk = cursor.fetchone()
-    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk, convoy_pk])
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='';")
 
-        
-    cursor.execute("SELECT convoy_pk FROM convoys WHERE dest_fk='Site 300' AND source_fk='Headquarters';")
+       
+
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='CA15467288';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['CA15467288'])
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA15467288';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='CA15467289';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['CA15467289'])
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA15467289';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='CA15467290';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['CA15467290'])
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA15467290';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+    
+    
+    cursor.execute("SELECT convoy_pk FROM convoys WHERE source_fk='Site 300' AND dest_fk='National City';")
     convoy_pk = cursor.fetchone()
-    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA154672';")
-    asset_pk = cursor.fetchone
-    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk, convoy_pk])
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='CA15467291';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['CA15467291'])
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA15467291';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='CA15467292';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['CA15467292'])
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA15467292';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='CA15467293';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['CA15467293'])
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA15467293';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='CA15467294';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['CA15467294'])
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA15467294';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+
+    cursor.execute("SELECT convoy_pk FROM convoys WHERE source_fk='Groom Lake' AND dest_fk='Sparks, NV';")
+    convoy_pk = cursor.fetchone()
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='CA15467295';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['CA15467295'])
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA15467295';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='CA15467296';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['CA15467296'])
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='CA15467296';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+
+    cursor.execute("SELECT convoy_pk FROM convoys WHERE source_fk='Los Alamos' AND dest_fk='Washington';")
+    convoy_pk = cursor.fetchone()
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='DC15467299';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['DC15467299'])
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='DC15467299';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+
+
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='DC25467300';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['DC25467300'])
+
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='DC25467300';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='DC25467301';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['DC25467301'])
+
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='DC25467301';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
+    cursor.execute("SELECT  FROM assets WHERE asset_tag='DC25467302';")
+    if cursor.fetchone() == None:
+        insert("assets", ["asset_tag"], ['DC25467302'])
+
+
+    cursor.execute("SELECT asset_pk FROM assets WHERE asset_tag='DC25467302';")
+    asset_pk = cursor.fetchone()
+    insert("asset_on", ['asset_fk', 'convoy_fk'], [asset_pk[0], convoy_pk[0]])
 
 
 
