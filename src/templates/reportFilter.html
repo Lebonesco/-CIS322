@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+<form action="{{url_for('dashboard')}}">
+	<h3>Facilites or Assets</h3>
+	<select name="report_type" value="{{request.form.report_type}}">
+		<option value="asset" name="asset">Assets</option>
+		<option value="transit" name="transit">Transit</option>
+	</select>
+	<h3>Filter Type</h3>
+	<select name="filter_type" value="{{request.form.filter_type}}">
+		<option name="facility" value="facility">Facility</option>
+		<option name="date" value="date">Date</option>
+	</select>
+	<h3>Input by facility<h3>
+	<input type="text" name="filter" value="{{request.form.filter}}">
+	<h3>Input by Date</h3>
+	<input type="date" name="date" value="{{request.form.date}}">
+	<input type="submit" value="Create Table">
+</form>	
+
+{% endblock %}

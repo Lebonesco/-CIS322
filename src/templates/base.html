@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title>LOST APP</title>
+</head>
+<body>
+	
+	<a href="{{ url_for('logout') }}">Log out</a>
+	<a href="{{ url_for('filter') }}">Filter</a>
+	
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<h3>{{message}}</h3>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+	{% block body %} {% endblock %}
+</body>
+</html>
