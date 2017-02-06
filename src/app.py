@@ -84,6 +84,82 @@ def logout():
     session.clear()
     return redirect(url_for('dashboard'))
 
+# API calls are here
+@api.route('/insert', methods=['GET', 'POST'])
+def insert():
+    data =[]
+    if request.method == 'POST':
+        
+
+
+    return render_template("insert.html", data)
+
+
+@app.route('/rest')
+def rest():
+    return render_template('rest.html')
+
+@app.route('/rest/lost_key', methods=['POST'])
+def lost_key():
+    return "nothing"
+
+@app.route('/rest/activate_user/<input>', methods=['POST'])
+def activate_user(input="result"):
+    try:
+        cursor.execute("INSERT INTO users (username) VALUES (" + input +");")
+        conn.commit();
+    except Exception as e:
+        pass
+    return 'nothing'
+
+@app.route('/rest/suspend_user', methods=['POST'])
+def suspend_user():
+    return "nothing"
+
+@app.route('/rest/list_products', methods=['POST'])
+def list_products():
+    return "nothing"
+
+@app.route('/rest/add_products', methods=['POST'])
+def add_products():
+    try:
+        cursor.execute("INSERT INTO users (username) VALUES (" + input +");")
+        conn.commit();
+    except Exception as e:
+        pass
+    return 'nothing'
+
+@app.route('/rest/add_asset', methods=['POST'])
+def add_asset():
+    try:
+        cursor.execute("INSERT INTO users (username) VALUES (" + input +");")
+        conn.commit();
+    except Exception as e:
+        pass
+    return 'nothing'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)

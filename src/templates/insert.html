@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<form action="POST">
+	<h2>Argument Type</h2>
+	<select name="arg" value="{{request.form.arg}}">
+		<option value="active_user" name="active_user">Activate User</option>
+		<option value="add_products" name="add_products">Add Products</option>
+		<option value="add_asset" name="add_asset">Add Assets</option>
+	</select>
+		
+	<h3>Add Products</h3>
+	<h4>vendor</h4>
+	<input type="text" name="vendor" value="{{request.form.vendor}}">
+	<h4>description</h4>
+	<input type="text" name="description" value="{{request.form.description}}">
+	<h3>Add Asset</h3>
+	<h4>asset tag</h4>
+	<input type="text" name="asset_tag" value="{{request.form.asset_tag}}">
+	<h4>description</h4>
+	<input type="text" name="description" value="{{request.form.description}}">
+	<h3>Activate User</h3>
+	<h4>User Name</h4>
+	<input type='text' name='name' value='{{request.form.name}}'>
+	<input type="submit" value="Submit">
+</form>
+	
+	{{data}}
+{% endblock %}
