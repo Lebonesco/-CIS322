@@ -1,10 +1,19 @@
-app.py : Flask app run by mod_wsgi
-config.py - logic for arguements
-lost.wsgi - imports sys and makes app an application
-lost_config.json - complimentary to config for variables
+The files in this directory implement a very simple web application to take in and present user entered data.
+
+The form on the welcome page submits to the goodbye page, which displays the data the user entered. If the expected data is missing, the goodbye page renders the index.htmltemplate instead of the goodbye template.
+
+Note on the _bad_ design shown:
+The design currently in this directory, while it works, does not follow best practices. The URL that presents a form should also be the action target for the form. This makes the web application much easier to maintain since the page responsible for the form is also responsible for parsing the form.
+
+Redirects should be used to point the user to the correct next page after their input data has been processed; in both the success and failure cases.
+
+NOTE :: app.py depends on ../util/osnap_crypto.py being copied into the same directory that app.py is run from. app.py also requires the encryption keys to be set in the configuration file
+
+Files:
+app.py - A Flask app to be run via mod_wsgi
+config.py - Logic to find and read the configuration into memory
+lost_config.json - a sample configuration file
 templates/
-  facility.html - creates a table of invintory by facility /todo allow for sort by facility
-  login.html - welcome page, sakes a username
-  logout.html - logout page /todo show username
-  report.html - gives user chance to enter varaible for report pages
-  transit.html - creates a table of all in inventory in transit by its arrival and expunge dates
+    index.html - a template for the root path
+    welcome.html - a template for the welcome page
+    goodbye.html - a template for the goodbye page

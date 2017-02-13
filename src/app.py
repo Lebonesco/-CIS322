@@ -7,49 +7,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('rest.html')
+    return render_template('index.html')
 
 @app.route('/rest')
-def rest():
-    return render_template('rest.html',dbname=dbname,dbhost=dbhost,dbport=dbport)
-
-@app.route('/rest/lost_key', methods=('POST',))
-def lost_key():
-    # Try to handle as plaintext
-    if request.method=='POST' and 'arguments' in request.form:
-        req=json.loads(request.form['arguments'])
-
-    dat = dict()
-    dat['timestamp'] = req['timestamp']
-    dat['result'] = 'OK'
-    data = json.dumps(dat)
-    return data
-
-@app.route('/rest/activate_user', methods=('POST',))
-#not finished
-def activate_user():
-    # Try to handle as plaintext
-    if request.method=='POST' and 'arguments' in request.form:
-        req=json.loads(request.form['arguments'])
-
-    dat = dict()
-    dat['timestamp'] = req['timestamp']
-    dat['result'] = 'OK'
-    data = json.dumps(dat)
-    return data
-
-@app.route('/rest/suspend_user', methods=('POST',))
-def suspend_user():
-    # Try to handle as plaintext
-    if request.method=='POST' and 'arguments' in request.form:
-        req=json.loads(request.form['arguments'])
-
-    dat = dict()
-    dat['timestamp'] = req['timestamp']
-    dat['result'] = 'OK'
-    data = json.dumps(dat)
-    return data
-
+@app.route('/welcome')
+def welcome():
+    return render_template('welcome.html',dbname=dbname,dbhost=dbhost,dbport=dbport)
 
 @app.route('/rest/list_products', methods=('POST',))
 def list_products():
@@ -100,8 +63,8 @@ left join sec_levels l on t.level_fk=l.level_pk"""
         # Need to handle compartments too
         SQLstart = """select vendor,description,string_agg(c.abbrv||':'||l.abbrv,',')
 from security_tags t
-left join compartments c on t.compartment_fk=c.compartment_pk
-left join levels l on t.level_fk=l.level_pk
+left join sec_compartments c on t.compartment_fk=c.compartment_pk
+left join sec_levels l on t.level_fk=l.level_pk
 left join products p on t.product_fk=p.product_pk
 where product_fk is not NULL and c.abbrv||':'||l.abbrv = ANY(%s)"""
         if req['vendor']=='' and req['description']=='':
@@ -144,40 +107,26 @@ where product_fk is not NULL and c.abbrv||':'||l.abbrv = ANY(%s)"""
     
     conn.close()
     return data
- 
-@app.route('/rest/add_products', methods=('POST',))
-def add_products():
-        # Try to handle as plaintext
-    if request.method=='POST' and 'arguments' in request.form:
-        req=json.loads(request.form['arguments'])
-
-    dat = dict()
-    dat['timestamp'] = req['timestamp']
-    dat['result'] = 'OK'
-    data = json.dumps(dat)
-    return data
-
-
-@app.route('/rest/add_asset', methods=('POST',))
-def add_asset():
-        # Try to handle as plaintext
-    if request.method=='POST' and 'arguments' in request.form:
-        req=json.loads(request.form['arguments'])
-
-    dat = dict()
-    dat['timestamp'] = req['timestamp']
-    dat['result'] = 'OK'
-    data = json.dumps(dat)
-    return data
     
+@app.route('/rest/suspend_user', methods=('POST',))
+def suspend_user():
+    # Try to handle as plaintext
+    if request.method=='POST' and 'arguments' in request.form:
+        req=json.loads(request.form['arguments'])
+
+    dat = dict()
+    dat['timestamp'] = req['timestamp']
+    dat['result'] = 'OK'
+    data = json.dumps(dat)
+    return data
+
 @app.route('/goodbye')
 def goodbye():
     if request.method=='GET' and 'mytext' in request.args:
-        return render_template('rest.html',data=request.args.get('mytext'))
+        return render_template('goodbye.html',data=request.args.get('mytext'))
 
     # request.form is only populated for POST messages
     if request.method=='POST' and 'mytext' in request.form:
-        return render_template('rest.html',data=request.form['mytext'])
-    return render_template('rest.html')
-if __name__=='__main__':
-    app.run(host='0.0.0.0', port=8080)
+        return render_template('goodbye.html',data=request.form['mytext'])
+    return render_template('index.html')
+
