@@ -119,6 +119,48 @@ def suspend_user():
     dat['result'] = 'OK'
     data = json.dumps(dat)
     return data
+@app.route('/rest/activate_user', methods=('POST',))
+def activate_user():
+    # Try to handle as plaintext
+    if request.method=='POST' and 'arguments' in request.form:
+        req=json.loads(request.form['arguments'])
+
+    dat = dict()
+    dat['timestamp'] = req['timestamp']
+    dat['result'] = 'OK'
+    data = json.dumps(dat)
+    cur.execute("INSERT INTO users (username) VALUES ('" + req['username'] + "');")
+    conn.commit()
+    return data
+
+@app.route('/rest/add_product', methods=('POST',))
+def add_product():
+    # Try to handle as plaintext
+    if request.method=='POST' and 'arguments' in request.form:
+        req=json.loads(request.form['arguments'])
+
+    dat = dict()
+    dat['timestamp'] = req['timestamp']
+    dat['result'] = 'OK'
+    data = json.dumps(dat)
+    cur.execute("INSERT INTO products (vendor) VALUES ('" + req['vendor'] + "');")
+    conn.commit()
+    return data
+
+@app.route('/rest/add_asset', methods=('POST',))
+def add_asset():
+    # Try to handle as plaintext
+    if request.method=='POST' and 'arguments' in request.form:
+        req=json.loads(request.form['arguments'])
+
+    dat = dict()
+    dat['timestamp'] = req['timestamp']
+    dat['result'] = 'OK'
+    data = json.dumps(dat)
+    cur.execute("INSERT INTO assets (asset_tag) VALUES ('" + req['asset_tag'] + "');")
+    conn.commit()
+
+    return data
 
 @app.route('/goodbye')
 def goodbye():
