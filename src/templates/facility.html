@@ -1,5 +1,5 @@
 <html>
-<head><title>Transit</title></head>
+<head><title>Facility</title></head>
 <nav class="navbar navbar-default" id="nav">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
@@ -8,11 +8,11 @@
     </ul>
   </div>
 </nav>
-<body><h1>In Transit Report</h1>
-<p> Transit Data: {{fcName}} </p>
-  <p>arrive_dt,depart_dt</p>
- <table>
-      {% for entry in session.transit %}
+<body><h1>Facility Inventory Report</h1>
+<p> Facility Location: {{fcName}} </p>
+  <p>asset_tag,description</p>
+  <table>
+      {% for entry in session.facility %}
   <tr>
     <td>{{ entry.column_name1 }}</td>
     <td>{{ entry.column_name2 }}</td>
