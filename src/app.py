@@ -37,7 +37,7 @@ def create_user():
                 if len(results) == 0:
                         cur.execute("SELECT role_pk FROM roles WHERE rolename='" + role + "';");
                         role_pk = cur.fetchall();
-                        cur.execute("INSERT INTO users (username, password) VALUES ('" + name + "', '"+password+"', '"+role_pk+"');")
+                        cur.execute("INSERT INTO users (username, password, role_fk) VALUES ('" + name + "', '"+password+"', '"+role_pk+"');")
                         conn.commit()
                         flash("User successfully inserted into database")
                 else:
@@ -112,9 +112,31 @@ def login():
                     else:
                         session['name'] = request.form['name']
                         session['logged_in'] = True
+                        session['role'] = 'test'
                         return redirect(url_for('dashboard'))
 	
 	return render_template('login.html', error=error)
+
+@app.route("/dispose_asset", methods=['GET', 'POST'])
+@login_required():
+    if session['role'] != 'officer'
+        if request.method == 'POST':
+            asset_tag = request.form['asset_tag']
+            date = request.form['date']
+            cur.execute("SELECT asset_pk FROM  assets WHEER asset_tag='"+asset_tag+"');")
+            result = cur.fetchall()
+            if len(result) == 0:
+                flash("asset does not exist")
+            else:
+                cur.execute("DELETE FROM assets WHERE asset_tag='"+asset_tag+"');")
+                conn.commit()
+                flash("asset_tag disposed")
+
+        return render_template("disposeAsset.html")
+
+
+    flash("Only logistics officers can dispose of assets")
+    return render_template("welcome.html")
 
 @app.route("/logout")
 @login_required
