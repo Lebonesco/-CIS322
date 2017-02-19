@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, flash
+from flask import Flask, redirect, render_template, request, url_for, flash, session
 from config import dbname, dbhost, dbport
 import json
 import psycopg2
@@ -13,7 +13,7 @@ app.secret_key = "thisisakey"
 def login_required(f):
 	@wraps(f)
 	def wrap(*args, **kwargs):
-		if 'logged_in' in sessiion:
+		if 'logged_in' in session:
 			return f(*args, **kwargs)
 		else:
 			flash("login required")
@@ -23,38 +23,55 @@ def login_required(f):
 @app.route("/dashboard")
 @login_required
 def dashboard():
-	return session['name']
+	return render_template("dashboard.html")
 
 @app.route("/create_user", methods=['GET', 'POST'])
 def create_user():
 	
-	if request.method == 'POST':
-		name = request.form['name']
-		password = request.form['password']
-		cur.execute("SELECT name FROM users WHERE name='" + name + "';")
-		results = cur.fetchall()
-		if results == None:
-			cur.execute("INSERT INTO users (name) VALUES ('" + name + "');")
-			conn.commit()
-			flash("User successfully inserted into database")
-		else:
-			flash("User already has this name")	
-	return render_template("login.html", title="Create User")
+        if request.method == 'POST':
+                name = request.form['name']
+                password = request.form['password']
+                cur.execute("SELECT username FROM users WHERE username='" + name + "';")
+                results = cur.fetchall()
+                if len(results) == 0:
+                        cur.execute("INSERT INTO users (username, password) VALUES ('" + name + "', '"+password+"');")
+                        conn.commit()
+                        flash("User successfully inserted into database")
+                else:
+                        flash("User already has this name")	
+        return render_template("createUser.html")
 
 @app.route("/")
+def welcome():
+    return render_template("welcome.html", dbname=dbname, dbhost=dbhost, dbport=dbport)
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
 	error = ''
-	try:
-		if request.method == 'POST':
-			session['logged_in'] = True
-			session['name'] = requst.form['name']
-			return redirect(url_for('dashboard'))
-	except Exception as e:
-		error = 'Invalid credentials. Try again.'
-	return render_template('login.html', error=error, title="Login")
+	if request.method == 'POST':
+                cur.execute("SELECT password from users WHERE username='" + request.form['name'] + "';")
+                result = cur.fetchall()
+                if len(result) == 0:
+                    error = "User doesn't exist"
+                else:
+                    tmp = False
+                    for password in result:
+                        if password[0] == request.form['password']:
+                            tmp = True
+                    if not tmp:
+                        error = "Invalid password"
+                    else:
+                        session['name'] = request.form['name']
+                        session['logged_in'] = True
+                        return redirect(url_for('dashboard'))
+	
+	return render_template('login.html', error=error)
 
-
+@app.route("/logout")
+@login_required
+def logout():
+    session.clear()
+    return redirect(url_for('welcome'))
 
 if __name__ == '__main__':
 	app.run(host="0.0.0.0", port=8080, debug=True)
