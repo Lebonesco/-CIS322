@@ -13,6 +13,9 @@ fi
 
 # Database prep
 cd sql
+
+dropdb -p 5432 $1
+createdb -p 5432 $1
 psql $1 -f create_tables.sql
 curl -O https://classes.cs.uoregon.edu//17W/cis322/files/osnap_legacy.tar.gz
 tar -xzf osnap_legacy.tar.gz

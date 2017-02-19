@@ -7,6 +7,11 @@
 <form action="" class="form-inline" method="POST">
 	<input type="text" class="form-control" placeholder="name" name="name" value="{{request.form.name}}">
 	<input type="password" class="form-control" placeholder="Password" name="password" value="{{request.form.password}}">
+	<select name="role" value="{{request.form.role}}">
+		<option value="captain" name="captain">Captain</option>
+		<option value="cadet" name="cadet">Cadet</option>
+		<option value="general" name="general">General</option>
+	</select>
 	<input class="btn btn-default" type="submit" value="Login">
 
 </form>

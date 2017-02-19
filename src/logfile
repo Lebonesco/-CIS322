@@ -1,0 +1,374 @@
+LOG:  database system was shut down at 2017-02-19 07:13:08 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "osnapdev" does not exist
+LOG:  database system was shut down at 2017-02-19 07:18:03 UTC
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  autovacuum launcher started
+LOG:  database system is ready to accept connections
+FATAL:  database "lost" does not exist
+FATAL:  database "lost" does not exist
+FATAL:  database "lost" does not exist
+ERROR:  relation "users" does not exist at character 18
+STATEMENT:  SELECT name FROM users WHERE name='Joseph';
+ERROR:  relation "users" already exists
+STATEMENT:  /* 	It's faster to compare id's rather than long strings
+		comparing by id's is more standard	
+		password field is this length because it is the same as the user name length*/
+	create table users (
+		user_pk serial primary key,
+		username varchar(16),
+		password varchar(16)
+	);
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  SELECT name FROM users WHERE name='Joseph';
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  SELECT name FROM users WHERE name='tim';
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+STATEMENT:  SELECT name FROM users WHERE name='tim';
+ERROR:  column "name" does not exist at character 8
+STATEMENT:  SELECT name FROM users WHERE name='tim';
+ERROR:  database "hw" does not exist
+STATEMENT:  DROP DATABASE hw;
+LOG:  unexpected EOF on client connection with an open transaction
+ERROR:  syntax error at or near "role_fk" at character 271
+STATEMENT:  /* 	It's faster to compare id's rather than long strings
+		comparing by id's is more standard	
+		password field is this length because it is the same as the user name length*/
+	create table users (
+		user_pk serial primary key,
+		username varchar(16),
+		password varchar(16)
+		role_fk integer REFERENCES roles(role_pk) not null
+	);
+ERROR:  type "varch" does not exist at character 90
+STATEMENT:  create table assets (
+		asset_pk serial primary key,
+		asset_tag varchar(16),
+		description varch(122)
+	);
+ERROR:  relation "assets" does not exist
+STATEMENT:  create table asset_at (
+		asset_fk integer REFERENCES assets(asset_pk) not null,
+		facility_fk integer REFERENCES facilities(facility_pk) not null,
+		depart_dt timestamp,
+		arrive_dt timestamp
+	);
+ERROR:  relation "roles" already exists
+STATEMENT:  /* 	It's faster to compare id's rather than long strings
+		comparing by id's is more standard	
+		password field is this length because it is the same as the user name length*/
+	create table roles (
+		role_pk serial primary key,
+		rolename varchar(16)
+	);
+ERROR:  syntax error at or near "role_fk" at character 97
+STATEMENT:  create table users (
+		user_pk serial primary key,
+		username varchar(16),
+		password varchar(16)
+		role_fk integer REFERENCES roles(role_pk) not null
+	);
+ERROR:  relation "facilities" already exists
+STATEMENT:  create table facilities (
+		facility_pk serial primary key,
+		common_name varchar(32),
+		code varchar(6)
+	);
+ERROR:  relation "roles" already exists
+STATEMENT:  /* 	It's faster to compare id's rather than long strings
+		comparing by id's is more standard	
+		password field is this length because it is the same as the user name length*/
+	create table roles (
+		role_pk serial primary key,
+		rolename varchar(16)
+	);
+ERROR:  syntax error at or near "role_fk" at character 97
+STATEMENT:  create table users (
+		user_pk serial primary key,
+		username varchar(16),
+		password varchar(16)
+		role_fk integer REFERENCES roles(role_pk) not null
+	);
+ERROR:  relation "assets" already exists
+STATEMENT:  create table assets (
+		asset_pk serial primary key,
+		asset_tag varchar(16),
+		description varchar(122)
+	);
+ERROR:  relation "facilities" already exists
+STATEMENT:  create table facilities (
+		facility_pk serial primary key,
+		common_name varchar(32),
+		code varchar(6)
+	);
+ERROR:  relation "asset_at" already exists
+STATEMENT:  create table asset_at (
+		asset_fk integer REFERENCES assets(asset_pk) not null,
+		facility_fk integer REFERENCES facilities(facility_pk) not null,
+		depart_dt timestamp,
+		arrive_dt timestamp
+	);
+ERROR:  database "lost" is being accessed by other users
+DETAIL:  There are 4 other sessions using the database.
+STATEMENT:  DROP DATABASE lost;
+ERROR:  database "lost" already exists
+STATEMENT:  CREATE DATABASE lost;
+ERROR:  relation "roles" already exists
+STATEMENT:  /* 	It's faster to compare id's rather than long strings
+		comparing by id's is more standard	
+		password field is this length because it is the same as the user name length*/
+	create table roles (
+		role_pk serial primary key,
+		rolename varchar(16)
+	);
+ERROR:  syntax error at or near "role_fk" at character 97
+STATEMENT:  create table users (
+		user_pk serial primary key,
+		username varchar(16),
+		password varchar(16)
+		role_fk integer REFERENCES roles(role_pk) not null
+	);
+ERROR:  relation "assets" already exists
+STATEMENT:  create table assets (
+		asset_pk serial primary key,
+		asset_tag varchar(16),
+		description varchar(122)
+	);
+ERROR:  relation "facilities" already exists
+STATEMENT:  create table facilities (
+		facility_pk serial primary key,
+		common_name varchar(32),
+		code varchar(6)
+	);
+ERROR:  relation "asset_at" already exists
+STATEMENT:  create table asset_at (
+		asset_fk integer REFERENCES assets(asset_pk) not null,
+		facility_fk integer REFERENCES facilities(facility_pk) not null,
+		depart_dt timestamp,
+		arrive_dt timestamp
+	);
+ERROR:  database "lost" is being accessed by other users
+DETAIL:  There are 4 other sessions using the database.
+STATEMENT:  DROP DATABASE lost;
+ERROR:  syntax error at or near "drop" at character 28
+STATEMENT:  drop schema public cascade
+	drop schema public cascade;
+ERROR:  schema "lost" does not exist
+STATEMENT:  drop schema lost cascade;
+ERROR:  database "lost" is being accessed by other users
+DETAIL:  There are 5 other sessions using the database.
+STATEMENT:  DROP DATABASE lost;
+ERROR:  database "lost" already exists
+STATEMENT:  CREATE DATABASE lost;
+ERROR:  no schema has been selected to create in at character 188
+STATEMENT:  /* 	It's faster to compare id's rather than long strings
+		comparing by id's is more standard	
+		password field is this length because it is the same as the user name length*/
+	create table roles (
+		role_pk serial primary key,
+		rolename varchar(16)
+	);
+ERROR:  syntax error at or near "role_fk" at character 97
+STATEMENT:  create table users (
+		user_pk serial primary key,
+		username varchar(16),
+		password varchar(16)
+		role_fk integer REFERENCES roles(role_pk) not null
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table assets (
+		asset_pk serial primary key,
+		asset_tag varchar(16),
+		description varchar(122)
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table facilities (
+		facility_pk serial primary key,
+		common_name varchar(32),
+		code varchar(6)
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table asset_at (
+		asset_fk integer REFERENCES assets(asset_pk) not null,
+		facility_fk integer REFERENCES facilities(facility_pk) not null,
+		depart_dt timestamp,
+		arrive_dt timestamp
+	);
+ERROR:  no schema has been selected to create in at character 188
+STATEMENT:  /* 	It's faster to compare id's rather than long strings
+		comparing by id's is more standard	
+		password field is this length because it is the same as the user name length*/
+	create table roles (
+		role_pk serial primary key,
+		rolename varchar(16)
+	);
+ERROR:  syntax error at or near "role_fk" at character 97
+STATEMENT:  create table users (
+		user_pk serial primary key,
+		username varchar(16),
+		password varchar(16)
+		role_fk integer REFERENCES roles(role_pk) not null
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table assets (
+		asset_pk serial primary key,
+		asset_tag varchar(16),
+		description varchar(122)
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table facilities (
+		facility_pk serial primary key,
+		common_name varchar(32),
+		code varchar(6)
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table asset_at (
+		asset_fk integer REFERENCES assets(asset_pk) not null,
+		facility_fk integer REFERENCES facilities(facility_pk) not null,
+		depart_dt timestamp,
+		arrive_dt timestamp
+	);
+ERROR:  no schema has been selected to create in at character 188
+STATEMENT:  /* 	It's faster to compare id's rather than long strings
+		comparing by id's is more standard	
+		password field is this length because it is the same as the user name length*/
+	create table roles (
+		role_pk serial primary key,
+		rolename varchar(16)
+	);
+ERROR:  syntax error at or near "role_fk" at character 97
+STATEMENT:  create table users (
+		user_pk serial primary key,
+		username varchar(16),
+		password varchar(16)
+		role_fk integer REFERENCES roles(role_pk) not null
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table assets (
+		asset_pk serial primary key,
+		asset_tag varchar(16),
+		description varchar(122)
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table facilities (
+		facility_pk serial primary key,
+		common_name varchar(32),
+		code varchar(6)
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table asset_at (
+		asset_fk integer REFERENCES assets(asset_pk) not null,
+		facility_fk integer REFERENCES facilities(facility_pk) not null,
+		depart_dt timestamp,
+		arrive_dt timestamp
+	);
+FATAL:  role "lost" does not exist
+ERROR:  no schema has been selected to create in at character 188
+STATEMENT:  /* 	It's faster to compare id's rather than long strings
+		comparing by id's is more standard	
+		password field is this length because it is the same as the user name length*/
+	create table roles (
+		role_pk serial primary key,
+		rolename varchar(16)
+	);
+ERROR:  syntax error at or near "role_fk" at character 97
+STATEMENT:  create table users (
+		user_pk serial primary key,
+		username varchar(16),
+		password varchar(16)
+		role_fk integer REFERENCES roles(role_pk) not null
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table assets (
+		asset_pk serial primary key,
+		asset_tag varchar(16),
+		description varchar(122)
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table facilities (
+		facility_pk serial primary key,
+		common_name varchar(32),
+		code varchar(6)
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table asset_at (
+		asset_fk integer REFERENCES assets(asset_pk) not null,
+		facility_fk integer REFERENCES facilities(facility_pk) not null,
+		depart_dt timestamp,
+		arrive_dt timestamp
+	);
+ERROR:  no schema has been selected to create in at character 188
+STATEMENT:  /* 	It's faster to compare id's rather than long strings
+		comparing by id's is more standard	
+		password field is this length because it is the same as the user name length*/
+	create table roles (
+		role_pk serial primary key,
+		rolename varchar(16)
+	);
+ERROR:  syntax error at or near "role_fk" at character 97
+STATEMENT:  create table users (
+		user_pk serial primary key,
+		username varchar(16),
+		password varchar(16)
+		role_fk integer REFERENCES roles(role_pk) not null
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table assets (
+		asset_pk serial primary key,
+		asset_tag varchar(16),
+		description varchar(122)
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table facilities (
+		facility_pk serial primary key,
+		common_name varchar(32),
+		code varchar(6)
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table asset_at (
+		asset_fk integer REFERENCES assets(asset_pk) not null,
+		facility_fk integer REFERENCES facilities(facility_pk) not null,
+		depart_dt timestamp,
+		arrive_dt timestamp
+	);
+ERROR:  no schema has been selected to create in at character 188
+STATEMENT:  /* 	It's faster to compare id's rather than long strings
+		comparing by id's is more standard	
+		password field is this length because it is the same as the user name length*/
+	create table roles (
+		role_pk serial primary key,
+		rolename varchar(16)
+	);
+ERROR:  syntax error at or near "role_fk" at character 97
+STATEMENT:  create table users (
+		user_pk serial primary key,
+		username varchar(16),
+		password varchar(16)
+		role_fk integer REFERENCES roles(role_pk) not null
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table assets (
+		asset_pk serial primary key,
+		asset_tag varchar(16),
+		description varchar(122)
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table facilities (
+		facility_pk serial primary key,
+		common_name varchar(32),
+		code varchar(6)
+	);
+ERROR:  no schema has been selected to create in at character 14
+STATEMENT:  create table asset_at (
+		asset_fk integer REFERENCES assets(asset_pk) not null,
+		facility_fk integer REFERENCES facilities(facility_pk) not null,
+		depart_dt timestamp,
+		arrive_dt timestamp
+	);
+ERROR:  database "lost" already exists
+STATEMENT:  CREATE DATABASE lost;
+ERROR:  database "lost" is being accessed by other users
+DETAIL:  There are 7 other sessions using the database.
+STATEMENT:  DROP DATABASE lost;

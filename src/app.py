@@ -31,10 +31,13 @@ def create_user():
         if request.method == 'POST':
                 name = request.form['name']
                 password = request.form['password']
+                role = request.form['role']
                 cur.execute("SELECT username FROM users WHERE username='" + name + "';")
                 results = cur.fetchall()
                 if len(results) == 0:
-                        cur.execute("INSERT INTO users (username, password) VALUES ('" + name + "', '"+password+"');")
+                        cur.execute("SELECT role_pk FROM roles WHERE rolename='" + role + "';");
+                        role_pk = cur.fetchall();
+                        cur.execute("INSERT INTO users (username, password) VALUES ('" + name + "', '"+password+"', '"+role_pk+"');")
                         conn.commit()
                         flash("User successfully inserted into database")
                 else:
