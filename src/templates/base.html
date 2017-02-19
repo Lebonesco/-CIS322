@@ -1,18 +1,30 @@
 <html>
 <head>
 <title>LOST APP</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+	<div class="container">
+		{% if session.logged_in %}
+		<a href="{{ url_for('logout') }}">Logout</a>
+		{% else %}
+		<a href="{{ url_for('login') }}">Login</a>
+		{% endif %}
+		<a href="{{ url_for('create_user') }}">Create User</a>
 
-<a href="{{ url_for('login') }}">Log out</a>
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-{% for message in messages %}
-<h3>{{message}}</h3>
-{% endfor %}
-{% endif %}
-{% endwith %}
+		{% if session.logged_in %}
+		<span><h2>Hello: </h2> {{session.name}}</span>
+		{% endif %}
+
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+					<h3>{{message}}</h3>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
 
 {% block body %} {% endblock %}
+	</div>
 </body>
 </html>
