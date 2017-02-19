@@ -4,7 +4,7 @@
 </head>
 <body>
 
-<a href="{{ url_for('logout') }}">Log out</a>
+<a href="{{ url_for('login') }}">Log out</a>
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 {% for message in messages %}

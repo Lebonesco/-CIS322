@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, url_for, flash
-import config import dbname, dbhost, dbport
+from config import dbname, dbhost, dbport
 import json
 import psycopg2
-import functools import wraps
+from functools import wraps
 
 conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
 cur = conn.cursor()
@@ -57,5 +57,6 @@ def login():
 
 
 if __name__ == '__main__':
-	app.run(port=8080, debug=True)
+	app.run(host="0.0.0.0", port=8080, debug=True)
+        
 
