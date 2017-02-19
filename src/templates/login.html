@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+<br>
+<h2>Login Here</h2>
+<form action="" class="form-inline" method="POST">
+	<input type="text" class="form-control" placeholder="name" name="name" value="{{request.form.name}}">
+	<input type="password" class="form-control" placeholder="Password" name="password" value="{{request.form.password}}">
+	<input class="btn btn-default" type="submit" value="Login">
+
+</form>
+
+{{error}}
+{% endblock %}
