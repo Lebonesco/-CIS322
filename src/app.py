@@ -44,6 +44,52 @@ def create_user():
                         flash("User already has this name")	
         return render_template("createUser.html")
 
+@app.route("/add_facility", methods=['GET', 'POST'])
+def add_facility():
+    
+    cur.execute("SELECT common_name FROM facilities")
+    facilities = cur.fetchall()
+
+    if request.method == 'POST':
+        name = request.form['name']
+        code = request.form['code']
+        cur.execute("SELECT common_name FROM facilities WHERE common_name='"+name+"';")
+        results = cur.fetchall()
+        if len(results) == 0:
+            cur.execute("INSERT INTO facilities (common_name, code) VALUES ('"+name+"', '"+code+"');")
+            conn.commit()
+            flash("Facility successfully inserted into database")
+        else:
+            flash("Facility already in database")
+    return render_template("addFacility.html", facilities=facilities)
+
+
+@app.route("/add_asset", methods=['POST' 'GET'])
+def add_asset():
+    cur.execute("SELECT common_name FROM facilities")
+    facilities = cur.fetchall()
+    cur.execute("SELECT asset_tag FROM assets")
+    assets = cur.fetchall()
+    if request.method == 'POST':
+        asset_tag = request.form['asset_tag']
+        description = request.form['description']
+        facility = request.form['facility']
+        arrival_date = request.form['arrival_dat']
+        cur.execute("SELECT asset_tag FROM assets WHERE asset_tag='"+asset_tag+"';")
+        results = cur.fetchall()
+        if len(results) == 0:
+            cur.execute("INSERT INTO assets (asset_tag, description) VALUES ('"+asset_tag+"', '"+description+"';")
+            cur.execute("SELECT asset_pk FROM assets WHERE asset_tag='"+asset_tag+"';")
+            asset_pk = cur.fetchall()
+            cur.execute("SELECT facility_pk FROM facilities WHERE common_name='"+facility+"';")
+            facility_pk = cur.fetchall()
+            cur.execute("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES ('"+asset_pk+"', '"+facility_pk+"', '"+arrival_date+"';")
+            conn.commit()
+            flash("Asset successfully inserted into database")
+        else:
+            flash("Asset already in database")
+    return render_template("addAsset.html", facilities=facilities, assets=assets)
+
 @app.route("/")
 def welcome():
     return render_template("welcome.html", dbname=dbname, dbhost=dbhost, dbport=dbport)

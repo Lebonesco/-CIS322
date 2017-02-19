@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<br>
+{% for facility in facilities %}
+	<h3>{{facility}}</h3>
+{% endfor %}
+
+
+<br>
+{% for asset in assets %}
+	<h3>{{asset}}</h3>
+{% endfor %}
+<br>
+<h2>Add Asset</h2>
+<form action="" class="form-inline" method="POST">
+	<input type="text" class="form-control" placeholder="asset tag" name="asset_tag" value="{{request.form.asset_tag}}">
+	<input type="text" class="form-control" placeholder="description" name="description" value="{{request.form.description}}">
+	<select name="facility" value="{{request.form.facility}}">
+		{% for facility in facilities %}
+			<option value={{facility}} name={{facility}}>{{facility}}</option>
+		{% endfor %}
+	</select>
+	<input type="date" class="form-control" placeholder="date" name="date" value="{{request.form.date}}">
+
+
+
+	<input class="btn btn-default" type="submit" value="Login">
+
+</form>
+
+{{error}}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<br>
+{% for facility in facilities %}
+	<h3>{{facility}}</h3>
+{% endfor %}
+
+
+<br>
+<h2>Add Facility</h2>
+<form action="" class="form-inline" method="POST">
+	<input type="text" class="form-control" placeholder="name" name="name" value="{{request.form.name}}">
+	<input type="text" class="form-control" placeholder="code" name="code" value="{{request.form.code}}">
+	<input class="btn btn-default" type="submit" value="Login">
+
+</form>
+
+{{error}}
+{% endblock %}
