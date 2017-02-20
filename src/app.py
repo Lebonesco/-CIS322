@@ -4,9 +4,6 @@ import json
 import psycopg2
 from functools import wraps
 
-conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
-cur = conn.cursor()
-
 app = Flask(__name__)
 app.secret_key = "thisisakey"
 
@@ -26,8 +23,10 @@ def dashboard():
 	return render_template("dashboard.html")
 
 @app.route("/create_user", methods=['GET', 'POST'])
-def create_user():
-	
+def create_user():	
+    conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+    cur = conn.cursor()
+        
         if request.method == 'POST':
                 name = request.form['name']
                 password = request.form['password']
@@ -46,6 +45,8 @@ def create_user():
 
 @app.route("/add_facility", methods=['GET', 'POST'])
 def add_facility():
+    conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+    cur = conn.cursor()
     
     cur.execute("SELECT common_name FROM facilities")
     facilities = cur.fetchall()
@@ -66,6 +67,8 @@ def add_facility():
 
 @app.route("/add_asset", methods=['POST' 'GET'])
 def add_asset():
+    conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+    cur = conn.cursor()
     cur.execute("SELECT common_name FROM facilities")
     facilities = cur.fetchall()
     cur.execute("SELECT asset_tag FROM assets")
@@ -96,7 +99,10 @@ def welcome():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-	error = ''
+    conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+    cur = conn.cursor()
+	
+        error = ''
 	if request.method == 'POST':
                 cur.execute("SELECT password from users WHERE username='" + request.form['name'] + "';")
                 result = cur.fetchall()
@@ -119,6 +125,10 @@ def login():
 
 @app.route("/dispose_asset", methods=['GET', 'POST'])
 @login_required():
+    def disposeAsset():
+    conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+    cur = conn.cursor()
+    
     if session['role'] != 'officer'
         if request.method == 'POST':
             asset_tag = request.form['asset_tag']
@@ -131,12 +141,24 @@ def login():
                 cur.execute("DELETE FROM assets WHERE asset_tag='"+asset_tag+"');")
                 conn.commit()
                 flash("asset_tag disposed")
+                return redirect(url_for("dashboad"))
 
         return render_template("disposeAsset.html")
 
 
     flash("Only logistics officers can dispose of assets")
     return render_template("welcome.html")
+
+@app.route("/asset_report")
+@login_required():
+    def assetReport():
+        if request.method == 'POST':
+            facility = request.form['facility']
+            date = request.form['date']
+            #cur.execute("SELECT 
+
+
+        return render_template("asset_report.html")
 
 @app.route("/logout")
 @login_required
