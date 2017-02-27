@@ -2,6 +2,11 @@
 
 {% block body %}
 
+
+<h3>Assets</h3>
+{% for asset in assets %}
+	<p>asset tag: {{asset[0]}}</p>
+{% endfor %}
 <br>
 <h2>Transfer Asset Request:</h2>
 <form action="" class="form-inline" method="POST">

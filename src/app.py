@@ -185,48 +185,54 @@ def assetReport():
 def transferReq():
     conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
     cur = conn.cursor()
-    cur.execute("SELECT common_name FROM facilities")
+    cur.execute("SELECT common_name FROM facilities;")
     facilities = cur.fetchall()
+    cur.execute("SELECT asset_tag FROM assets;")
+    assets = cur.fetchall()
 
 
     error = ''
     if session['role'] != 'officer':
         if request.method == 'POST':
-            asset_tag = request.form['assest_tag']
+            asset_tag = request.form['asset_tag']
             source = request.form['source']
             destination = request.form['destination']
+            date = request.form['date']
             cur.execute("SELECT asset_pk FROM assets WHERE asset_tag='"+asset_tag+"';")
-            asset_fk = cur.fetchall()
-            if len(asset_fk) != 0:
+            asset_fk = cur.fetchone()
+            if asset_fk != None:
                 cur.execute("SELECT user_pk from users WHERE username='"+session['name']+"';")
-                user_pk = cur.fetchall()
+                user_pk = cur.fetchone()
                 cur.execute("SELECT facility_pk from facilities WHERE common_name='"+source+"';")
-                source_fk = cur.fetchall()
+                source_fk = cur.fetchone()
                 cur.execute("SELECT facility_pk from facilities WHERE common_name='"+destination+"';")
-                destination_fk = cur.fetchall()
-
-                cur.execute("INSERT INTO requests (requester_fk, request_date, source_fk, destination_fk, asset_fk) VALUES ('"+user_pk+"','"+date+"','"+source_fk+"','"+destination_fk+"','"+asset_fk+"');")
+                destination_fk = cur.fetchone()
+                cur.execute("INSERT INTO requests (requester_fk, request_data, source_fk, destination_fk, assset_fk) VALUES ("+str(user_pk[0])+",'"+date+"',"+str(source_fk[0])+","+str(destination_fk[0])+","+str(asset_fk[0])+");")
+                conn.commit()
                 conn.close()
                 flash("Asset Transfer Request is Successful!")
                 return redirect(url_for("dashboard"))
                 
             error = "Asset Tag does not exist"
-        return render_template("transferReq.html", error=error, facilities=facilities)
+        return render_template("transferReq.html", error=error, facilities=facilities, assets=assets)
     flash("Only officers can request transfers")
     conn.close()
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('dashboad'))
 
 @app.route("/approve_req", methods=['GET', 'POST'])
 @login_required
 def approveReq():
     conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
     cur = conn.cursor()
+    cur.execute("SELECT * FROM requests;")
+    requests = cur.fetchall()
+
     error = ''
     if session['role'] != 'officer':
         if request.method == 'POST':
             pass
 
-
+        return render_template("approveReq.html", requests=requests)
     flash("Only officesr can approve request")
     return redirect(url_for("dashboard"))
 
