@@ -3,7 +3,7 @@ from config import dbname, dbhost, dbport
 import json
 import psycopg2
 from functools import wraps
-
+import sys
 app = Flask(__name__)
 app.secret_key = "thisisakey"
 
@@ -24,23 +24,29 @@ def dashboard():
 
 @app.route("/create_user", methods=['GET', 'POST'])
 def create_user():	
-    conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
-    cur = conn.cursor()
+        conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+        cur = conn.cursor()
         
         if request.method == 'POST':
                 name = request.form['name']
                 password = request.form['password']
                 role = request.form['role']
-                cur.execute("SELECT username FROM users WHERE username='" + name + "';")
+                cur.execute("SELECT username FROM users WHERE username='"+name+"';")
                 results = cur.fetchall()
                 if len(results) == 0:
                         cur.execute("SELECT role_pk FROM roles WHERE rolename='" + role + "';");
-                        role_pk = cur.fetchall();
-                        cur.execute("INSERT INTO users (username, password, role_fk) VALUES ('" + name + "', '"+password+"', '"+role_pk+"');")
+                        role_pk = cur.fetchall()
+                        if len(role_pk) == 0:
+                                cur.execute("INSERT INTO roles (rolename) VALUES ('"+role+"');")
+                                cur.execute("SELECT role_pk FROM roles WHERE rolename='" + role + "';");
+                                role_pk = cur.fetchall()
+                        role_fk = role_pk[0]
+                        cur.execute("INSERT INTO users (username, password, role_fk) VALUES ('"+name+"', '"+password+"', "+str(role_fk[0])+");")
                         conn.commit()
                         flash("User successfully inserted into database")
                 else:
-                        flash("User already has this name")	
+                        flash("User already has this name")
+        conn.close()
         return render_template("createUser.html")
 
 @app.route("/add_facility", methods=['GET', 'POST'])
@@ -62,10 +68,11 @@ def add_facility():
             flash("Facility successfully inserted into database")
         else:
             flash("Facility already in database")
+    conn.close()
     return render_template("addFacility.html", facilities=facilities)
 
 
-@app.route("/add_asset", methods=['POST' 'GET'])
+@app.route("/add_asset", methods=['GET', 'POST'])
 def add_asset():
     conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
     cur = conn.cursor()
@@ -77,20 +84,23 @@ def add_asset():
         asset_tag = request.form['asset_tag']
         description = request.form['description']
         facility = request.form['facility']
-        arrival_date = request.form['arrival_dat']
+        date = request.form['date']
         cur.execute("SELECT asset_tag FROM assets WHERE asset_tag='"+asset_tag+"';")
         results = cur.fetchall()
         if len(results) == 0:
-            cur.execute("INSERT INTO assets (asset_tag, description) VALUES ('"+asset_tag+"', '"+description+"';")
+            cur.execute("INSERT INTO assets (asset_tag, description) VALUES ('"+asset_tag+"', '"+description+"');")
             cur.execute("SELECT asset_pk FROM assets WHERE asset_tag='"+asset_tag+"';")
             asset_pk = cur.fetchall()
             cur.execute("SELECT facility_pk FROM facilities WHERE common_name='"+facility+"';")
             facility_pk = cur.fetchall()
-            cur.execute("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES ('"+asset_pk+"', '"+facility_pk+"', '"+arrival_date+"';")
+            facility_pk = facility_pk[0]
+            asset_pk = asset_pk[0]
+            cur.execute("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES ("+str(asset_pk[0])+", "+str(facility_pk[0])+", '"+date+"');")
             conn.commit()
             flash("Asset successfully inserted into database")
         else:
             flash("Asset already in database")
+    conn.close()
     return render_template("addAsset.html", facilities=facilities, assets=assets)
 
 @app.route("/")
@@ -102,63 +112,73 @@ def login():
     conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
     cur = conn.cursor()
 	
-        error = ''
-	if request.method == 'POST':
-                cur.execute("SELECT password from users WHERE username='" + request.form['name'] + "';")
-                result = cur.fetchall()
-                if len(result) == 0:
-                    error = "User doesn't exist"
-                else:
-                    tmp = False
-                    for password in result:
-                        if password[0] == request.form['password']:
-                            tmp = True
-                    if not tmp:
-                        error = "Invalid password"
-                    else:
-                        session['name'] = request.form['name']
-                        session['logged_in'] = True
-                        session['role'] = 'test'
-                        return redirect(url_for('dashboard'))
+    error = ''
+    if request.method == 'POST':
+        cur.execute("SELECT password from users WHERE username='" + request.form['name'] + "';")
+        result = cur.fetchall()
+        if len(result) == 0:
+            error = "User doesn't exist"
+        else:
+            tmp = False
+            for password in result:
+                if password[0] == request.form['password']:
+                    tmp = True
+            if not tmp:
+                error = "Invalid password"
+            else:
+                session['name'] = request.form['name']
+                session['logged_in'] = True
+                session['role'] = 'test'
+                return redirect(url_for('dashboard'))
 	
-	return render_template('login.html', error=error)
+    return render_template('login.html', error=error)
 
 @app.route("/dispose_asset", methods=['GET', 'POST'])
-@login_required():
-    def disposeAsset():
+@login_required
+def disposeAsset():
     conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
     cur = conn.cursor()
     
-    if session['role'] != 'officer'
+    if session['role'] != 'officer':
         if request.method == 'POST':
             asset_tag = request.form['asset_tag']
             date = request.form['date']
-            cur.execute("SELECT asset_pk FROM  assets WHEER asset_tag='"+asset_tag+"');")
+            cur.execute("SELECT asset_pk FROM  assets WHERE asset_tag='"+asset_tag+"';")
             result = cur.fetchall()
             if len(result) == 0:
                 flash("asset does not exist")
             else:
-                cur.execute("DELETE FROM assets WHERE asset_tag='"+asset_tag+"');")
+                asset_pk = result[0]
+                cur.execute("UPDATE asset_at SET depart_dt='"+date+"' WHERE asset_fk="+str(asset_pk[0])+";")
                 conn.commit()
                 flash("asset_tag disposed")
-                return redirect(url_for("dashboad"))
-
+                return redirect(url_for("dashboard"))
+        conn.close()
         return render_template("disposeAsset.html")
 
 
     flash("Only logistics officers can dispose of assets")
     return render_template("welcome.html")
 
-@app.route("/asset_report")
-@login_required():
-    def assetReport():
-        if request.method == 'POST':
-            facility = request.form['facility']
-            date = request.form['date']
-            #cur.execute("SELECT 
+@app.route("/asset_report", methods=['GET', 'POST'])
+@login_required
+def assetReport():
+    data = ""
+    conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+    cur = conn.cursor()
+    cur.execute("SELECT common_name FROM facilities")
+    facilities = cur.fetchall()
 
-
-        return render_template("asset_report.html")
+    if request.method == 'POST':
+        facility = request.form['facility']
+        date = request.form['date']
+        try:
+            cur.execute("SELECT asset_tag, common_name, arrive_dt FROM assets a JOIN asset_at aa ON asset_pk=asset_fk INNER JOIN facilities ON facility_fk=facility_pk WHERE facilities.common_name LIKE '%"+facility+"%' AND '"+date+"' >= aa.arrive_dt AND '"+date+"' <= aa.depart_dt;")
+            data = cur.fetchall()
+        except Exception as e:
+            flash('Please enter a Date')
+    conn.close()
+    return render_template("assetReport.html", facilities=facilities, data=data)
 
 @app.route("/logout")
 @login_required

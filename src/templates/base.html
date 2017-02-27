@@ -5,12 +5,18 @@
 </head>
 <body>
 	<div class="container">
+		<ul class="nav nav-tabs">
 		{% if session.logged_in %}
-		<a href="{{ url_for('logout') }}">Logout</a>
+		<li><a href="{{ url_for('logout') }}">Logout</a></li>
+		<li><a href="{{ url_for('add_asset') }}">Add Asset</a></li>
+		<li><a href="{{ url_for('add_facility') }}">Add Facility</a></li>
+		<li><a href="{{ url_for('disposeAsset') }}">Dispose Asset</a></li>
 		{% else %}
-		<a href="{{ url_for('login') }}">Login</a>
+		<li><a href="{{ url_for('login') }}">Login</a></li>
 		{% endif %}
-		<a href="{{ url_for('create_user') }}">Create User</a>
+		<li><a href="{{ url_for('create_user') }}">Create User</a></li>
+		<li><a href="{{ url_for('assetReport') }}">Asset Report</a></li>
+		</ul>
 
 		{% if session.logged_in %}
 		<span><h2>Hello: </h2> {{session.name}}</span>

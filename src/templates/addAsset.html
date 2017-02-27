@@ -3,14 +3,16 @@
 {% block body %}
 
 <br>
+<h2>Facilities:</h2>
 {% for facility in facilities %}
-	<h3>{{facility}}</h3>
+	<h3>{{facility[0]}}</h3>
 {% endfor %}
 
 
 <br>
+<h2>Assets:</h2>
 {% for asset in assets %}
-	<h3>{{asset}}</h3>
+	<h3>{{asset[0]}}</h3>
 {% endfor %}
 <br>
 <h2>Add Asset</h2>
@@ -19,14 +21,14 @@
 	<input type="text" class="form-control" placeholder="description" name="description" value="{{request.form.description}}">
 	<select name="facility" value="{{request.form.facility}}">
 		{% for facility in facilities %}
-			<option value={{facility}} name={{facility}}>{{facility}}</option>
+			<option value={{facility[0]}} name={{facility[0]}}>{{facility[0]}}</option>
 		{% endfor %}
 	</select>
 	<input type="date" class="form-control" placeholder="date" name="date" value="{{request.form.date}}">
 
 
 
-	<input class="btn btn-default" type="submit" value="Login">
+	<input class="btn btn-default" type="submit" value="add">
 
 </form>
 

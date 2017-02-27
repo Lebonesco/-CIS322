@@ -3,8 +3,9 @@
 {% block body %}
 
 <br>
+<h2>Facilities</h2>
 {% for facility in facilities %}
-	<h3>{{facility}}</h3>
+	<h3>{{facility[0]}}</h3>
 {% endfor %}
 
 
@@ -13,7 +14,7 @@
 <form action="" class="form-inline" method="POST">
 	<input type="text" class="form-control" placeholder="name" name="name" value="{{request.form.name}}">
 	<input type="text" class="form-control" placeholder="code" name="code" value="{{request.form.code}}">
-	<input class="btn btn-default" type="submit" value="Login">
+	<input class="btn btn-default" type="submit" value="add">
 
 </form>
 

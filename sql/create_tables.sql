@@ -4,7 +4,7 @@
 
 create table roles (
 	role_pk serial primary key,
-	rolename varchar(16)
+	rolename varchar(32)
 );
 
 create table users (
