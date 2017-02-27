@@ -20,7 +20,23 @@ def login_required(f):
 @app.route("/dashboard")
 @login_required
 def dashboard():
-	return render_template("dashboard.html")
+        conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+        cur = conn.cursor()
+        
+        if session['role'] == 'officer':
+            cur.execute("SELECT * FROM requests")
+            data = cur.fetchall()
+            header = "Request"
+            rows = ["Requester", "Request Date", "Source", "Destination"]
+            url = "/approve_req"
+        else:
+            cur.execute("SELECT * FROM transit")
+            data = cur.fetchall()
+            header = "Transit"
+            rows = ["Request ID", "Load Time", "Unload Time"]
+            url = "/transit"
+            conn.commit()
+        return render_template("dashboard.html", data=data, header=header, rows=rows, url=url)
 
 @app.route("/create_user", methods=['GET', 'POST'])
 def create_user():	

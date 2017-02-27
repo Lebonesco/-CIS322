@@ -42,3 +42,10 @@ create table requests (
 	destination_fk integer REFERENCES facilities(facility_pk) not null,
 	assset_fk integer REFERENCES assets(asset_pk) not null
 );
+
+create table transit (
+	transit_pk serial primary key,
+	request_fk integer REFERENCES requests(request_pk) not null,
+	load_time timestamp,
+	unload_time timestamp
+);

@@ -20,8 +20,8 @@
 	<td>{{request[2]}}</td>
 	<td>{{request[3]}}</td>
 	<td>{{request[4]}}</td>
-	<td><a href="#" class="btn" role="button">Approve<td>
-	<td><a href="#" class="btn" role="button">Deny<td>
+	<td><input type="submit" value="Approve" class="btn btn-success" name={{request[0]}}><td>
+	<td><input type="submit" value="Deny" class="btn btn-danger" name={{request[0]}}><td>
 	<tr>
 {% endfor %}
 <table>

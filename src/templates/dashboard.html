@@ -2,9 +2,23 @@
 
 {% block body %}
 
-
 <br>
 <h2>DashBoard</h2>
+<h3>{{session['role']}}</h3>
+<h2>{{header}}</h2>
 
+<table class="table table-condenesed">
+	<tr>
+	{% for row in rows %}
+		<td><a href={{url}}>{{row}}</a></td>
+	{% endfor %}
+	<tr>
+{% for item in data %}
+	<tr>
+		<td><a href={{url}}>{{item}}</a></td>
+	<tr>
+{% endfor %}
+<table>
 
+{{error}}
 {% endblock %}
