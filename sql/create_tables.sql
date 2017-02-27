@@ -33,3 +33,12 @@ create table asset_at (
 	arrive_dt timestamp
 );
 	
+create table requests (
+	request_pk serial primary key,
+	requester_fk integer REFERENCES roles(role_pk) not null,
+	request_data timestamp,
+	approval_data timestamp,
+	source_fk integer REFERENCES facilities(facility_pk) not null,
+	destination_fk integer REFERENCES facilities(facility_pk) not null,
+	assset_fk integer REFERENCES assets(asset_pk) not null
+);

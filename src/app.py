@@ -180,6 +180,47 @@ def assetReport():
     conn.close()
     return render_template("assetReport.html", facilities=facilities, data=data)
 
+@app.route("/transfer_req", methods=['GET', 'POST'])
+@login_required
+def transferReq():
+    conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+    cur = conn.cursor()
+    error = ''
+    if session['role'] != 'officer':
+        if request.method == 'POST':
+            asset_tag = request.form['assest_tag']
+            source = request.form['source']
+            destination = request.form['destination']
+            cur.execute("SELECT asset_pk FROM assets WHERE asset_tag='"+asset_tag+"';")
+            result = cur.fetchall()
+            if len(result) != 0:
+                cur.execute("SELECT user_:
+                cur.execute("INSERT INTO requests (requester_fk, request_date, source_fk, destination_fk, asset_fk) VALUES ('"+user_pk+"','"+date+"','"+source_fk+"','"+destination_fk+"','"+asset_fk+"');")
+                conn.close()
+                flash("Asset Transfer Request is Successful!")
+                return redirect(url_for("dashboard"))
+                
+            error = "Asset Tag does not exist"
+        return render_template("transferReq.html", error=error)
+    flash("Only officers can request transfers")
+    conn.close()
+    return redirect(url_for('dashboard'))
+
+@app.route("/approve_req", methods=['GET', 'POST'])
+@login_required
+def approveReq():
+    conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+    cur = conn.cursor()
+    error = ''
+    if session['role'] != 'officer':
+        if request.method == 'POST':
+            pass
+
+
+    flash("Only officesr can approve request")
+    return redirect(url_for("dashboard"))
+
+
 @app.route("/logout")
 @login_required
 def logout():
