@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<br>
+<h2>Approve Request:</h2>
+
+<table class="table table-condenesed">
+	<tr>
+	<th>Requester ID</th>
+	<th>Request Date</th>
+	<th>Source</th>
+	<th>Destination</th>
+	<th>Asset ID</th>
+	<tr>
+{% for request in requests %}
+	<tr>
+	<td>{{request[0]}}</td>
+	<td>{{request[1]}}</td>
+	<td>{{request[2]}}</td>
+	<td>{{request[3]}}</td>
+	<td>{{request[4]}}</td>
+	<tr>
+{% endfor %}
+<table>
+
+{{error}}
+{% endblock %}

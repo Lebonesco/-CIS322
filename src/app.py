@@ -185,6 +185,10 @@ def assetReport():
 def transferReq():
     conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
     cur = conn.cursor()
+    cur.execute("SELECT common_name FROM facilities")
+    facilities = cur.fetchall()
+
+
     error = ''
     if session['role'] != 'officer':
         if request.method == 'POST':
@@ -192,16 +196,22 @@ def transferReq():
             source = request.form['source']
             destination = request.form['destination']
             cur.execute("SELECT asset_pk FROM assets WHERE asset_tag='"+asset_tag+"';")
-            result = cur.fetchall()
-            if len(result) != 0:
-                cur.execute("SELECT user_:
+            asset_fk = cur.fetchall()
+            if len(asset_fk) != 0:
+                cur.execute("SELECT user_pk from users WHERE username='"+session['name']+"';")
+                user_pk = cur.fetchall()
+                cur.execute("SELECT facility_pk from facilities WHERE common_name='"+source+"';")
+                source_fk = cur.fetchall()
+                cur.execute("SELECT facility_pk from facilities WHERE common_name='"+destination+"';")
+                destination_fk = cur.fetchall()
+
                 cur.execute("INSERT INTO requests (requester_fk, request_date, source_fk, destination_fk, asset_fk) VALUES ('"+user_pk+"','"+date+"','"+source_fk+"','"+destination_fk+"','"+asset_fk+"');")
                 conn.close()
                 flash("Asset Transfer Request is Successful!")
                 return redirect(url_for("dashboard"))
                 
             error = "Asset Tag does not exist"
-        return render_template("transferReq.html", error=error)
+        return render_template("transferReq.html", error=error, facilities=facilities)
     flash("Only officers can request transfers")
     conn.close()
     return redirect(url_for('dashboard'))
@@ -220,6 +230,9 @@ def approveReq():
     flash("Only officesr can approve request")
     return redirect(url_for("dashboard"))
 
+@app.route("/transfer_report", methods=['GET', 'POST'])
+def transferReport():
+    return "nothing here yet"
 
 @app.route("/logout")
 @login_required

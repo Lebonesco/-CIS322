@@ -10,12 +10,17 @@
 		<li><a href="{{ url_for('logout') }}">Logout</a></li>
 		<li><a href="{{ url_for('add_asset') }}">Add Asset</a></li>
 		<li><a href="{{ url_for('add_facility') }}">Add Facility</a></li>
-		<li><a href="{{ url_for('disposeAsset') }}">Dispose Asset</a></li>
+		<li><a href="{{ url_for('disposeAsset') }}">Dispose Asset</a></li>	
+		<li><a href="{{ url_for('transferReq') }}">Transfer Request</a></li>
+		<li><a href="{{ url_for('approveReq') }}">Approve Request</a></li>
+
 		{% else %}
 		<li><a href="{{ url_for('login') }}">Login</a></li>
 		{% endif %}
 		<li><a href="{{ url_for('create_user') }}">Create User</a></li>
 		<li><a href="{{ url_for('assetReport') }}">Asset Report</a></li>
+		<li><a href="{{ url_for('transferReport') }}">Transfer Report</a></li>
+
 		</ul>
 
 		{% if session.logged_in %}
