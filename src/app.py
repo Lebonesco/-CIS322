@@ -246,7 +246,18 @@ def approveReq():
     error = ''
     if session['role'] != 'officer':
         if request.method == 'POST':
-            pass
+            approval = request.form.getlist("approval")
+            deny = request.form.getlist("deny")
+            request_pk = request.form["request_pk"]
+
+            if len(approval) != 0:
+                flash("APPROVED")    
+            else:
+                cur.execute("DELETE FROM requests WHERE request_pk='"+request_pk+"';")
+            conn.commit()
+            conn.close()
+            flash("Request has been removed")
+            return redirect(url_for("dashboard"))
 
         return render_template("approveReq.html", requests=requests)
     flash("Only officesr can approve request")

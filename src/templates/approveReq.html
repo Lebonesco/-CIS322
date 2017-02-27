@@ -20,8 +20,11 @@
 	<td>{{request[2]}}</td>
 	<td>{{request[3]}}</td>
 	<td>{{request[4]}}</td>
-	<td><input type="submit" value="Approve" class="btn btn-success" name={{request[0]}}><td>
-	<td><input type="submit" value="Deny" class="btn btn-danger" name={{request[0]}}><td>
+	<form action="" method="POST" class="form-inline">
+		<input type="hidden" name="request_pk" value="{{request[0]}}">
+		<td><input type="submit" value="Approve" class="btn btn-success" name="approval"><td>
+	<td><input type="submit" value="Deny" class="btn btn-danger" name="deny"><td>
+	</form>
 	<tr>
 {% endfor %}
 <table>
