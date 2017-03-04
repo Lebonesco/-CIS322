@@ -23,19 +23,20 @@ def dashboard():
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
         cur = conn.cursor()
         
-        if session['role'] == 'officer':
-            cur.execute("SELECT * FROM requests")
+        if session['role'] == 'logistics_officer':
+            cur.execute("SELECT * FROM requests WHERE request_pk NOT IN(SELECT request_fk FROM transit);")
             data = cur.fetchall()
             header = "Request"
             rows = ["Requester", "Request Date", "Source", "Destination"]
             url = "/approve_req"
         else:
-            cur.execute("SELECT * FROM transit")
+            cur.execute("SELECT * FROM transit WHERE load_time IS Null AND unload_time IS Null")
             data = cur.fetchall()
             header = "Transit"
             rows = ["Request ID", "Load Time", "Unload Time"]
-            url = "/transit"
+            url = "/update_transit"
             conn.commit()
+        conn.close()
         return render_template("dashboard.html", data=data, header=header, rows=rows, url=url)
 
 @app.route("/create_user", methods=['GET', 'POST'])
@@ -142,9 +143,11 @@ def login():
             if not tmp:
                 error = "Invalid password"
             else:
+                cur.execute("SELECT rolename FROM roles r JOIN users u ON r.role_pk=u.role_fk WHERE u.username='"+request.form['name']+"';")
+                role = cur.fetchone()
                 session['name'] = request.form['name']
                 session['logged_in'] = True
-                session['role'] = 'test'
+                session['role'] = role[0]
                 return redirect(url_for('dashboard'))
 	
     return render_template('login.html', error=error)
@@ -240,7 +243,7 @@ def transferReq():
 def approveReq():
     conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
     cur = conn.cursor()
-    cur.execute("SELECT * FROM requests;")
+    cur.execute("SELECT * FROM requests WHERE request_pk NOT IN(SELECT request_fk FROM transit);")
     requests = cur.fetchall()
 
     error = ''
@@ -251,21 +254,42 @@ def approveReq():
             request_pk = request.form["request_pk"]
 
             if len(approval) != 0:
-                flash("APPROVED")    
+                flash("APPROVED")  
+                cur.execute("INSERT INTO transit (request_fk) VALUES ('"+request_pk+"');")
             else:
+                flash("Request has been removed")
                 cur.execute("DELETE FROM requests WHERE request_pk='"+request_pk+"';")
             conn.commit()
             conn.close()
-            flash("Request has been removed")
+            
             return redirect(url_for("dashboard"))
 
         return render_template("approveReq.html", requests=requests)
     flash("Only officesr can approve request")
     return redirect(url_for("dashboard"))
 
-@app.route("/transfer_report", methods=['GET', 'POST'])
+@app.route("/update_transit", methods=['GET', 'POST'])
 def transferReport():
-    return "nothing here yet"
+    conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM transit WHERE load_time IS Null AND unload_time IS Null")
+    transit = cur.fetchall()
+    if session['role'] == 'facilities_officer':
+        if request.method == 'POST':
+            load_time = request.form['load']
+            unload_time = request.form['unload']
+            transit_pk = request.form["transit_pk"]
+            cur.execute("UPDATE transit SET load_time='"+load_time+"', unload_time='"+unload_time+"' WHERE transit_pk='"+transit_pk+"';")
+            conn.commit()
+            flash("Updated load/unload times")
+            conn.close()
+            return redirect(url_for('dashboard'))
+        conn.close()
+        return render_template("update_transit.html", transit=transit)
+    flash("Only Facilities Officer can update tracking information.")
+    conn.close()
+    return redirect(url_for("dashboard"))
+
 
 @app.route("/logout")
 @login_required

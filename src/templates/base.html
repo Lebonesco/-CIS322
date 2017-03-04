@@ -24,7 +24,7 @@
 		</ul>
 
 		{% if session.logged_in %}
-		<span><h2>Hello: </h2> {{session.name}}</span>
+		<span><h2>Hello: </h2> {{session.name}}, {{session.role}}</span>
 		{% endif %}
 
 		{% with messages = get_flashed_messages() %}

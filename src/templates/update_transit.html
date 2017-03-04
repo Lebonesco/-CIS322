@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<br>
+<h2>Update Transit:</h2>
+
+<form action="" method="POST" class="form-inline">
+	<select name="transit_pk" value="{{request.form.transit_pk}}">
+		{% for item in transit %}
+			<option value={{item[0]}} name={{item[0]}}>{{item[0]}}</option>
+		{% endfor %}
+	</select>
+	<input type="date" class="form-control" placeholder="load" name="load" value="{{request.form.load}}">
+	<input type="date" class="form-control" placeholder="unload" name="unload" value="{{request.form.unload}}">
+	<input type="submit" value="Submit" class="btn" name="submit">
+</form>
+
+{{error}}
+{% endblock %}
