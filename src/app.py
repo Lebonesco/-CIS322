@@ -170,6 +170,7 @@ def disposeAsset():
                 asset_pk = result[0]
                 cur.execute("UPDATE asset_at SET depart_dt='"+date+"' WHERE asset_fk="+str(asset_pk[0])+";")
                 conn.commit()
+                conn.close()
                 flash("asset_tag disposed")
                 return redirect(url_for("dashboard"))
         conn.close()
@@ -211,7 +212,7 @@ def transferReq():
 
 
     error = ''
-    if session['role'] != 'officer':
+    if session['role'] == 'logistics_officer':
         if request.method == 'POST':
             asset_tag = request.form['asset_tag']
             source = request.form['source']
@@ -234,9 +235,9 @@ def transferReq():
                 
             error = "Asset Tag does not exist"
         return render_template("transferReq.html", error=error, facilities=facilities, assets=assets)
-    flash("Only officers can request transfers")
+    flash("Only Logistics officers can request transfers")
     conn.close()
-    return redirect(url_for('dashboad'))
+    return redirect(url_for('dashboard'))
 
 @app.route("/approve_req", methods=['GET', 'POST'])
 @login_required
@@ -247,7 +248,7 @@ def approveReq():
     requests = cur.fetchall()
 
     error = ''
-    if session['role'] != 'officer':
+    if session['role'] == 'facilities_officer':
         if request.method == 'POST':
             approval = request.form.getlist("approval")
             deny = request.form.getlist("deny")
@@ -265,7 +266,7 @@ def approveReq():
             return redirect(url_for("dashboard"))
 
         return render_template("approveReq.html", requests=requests)
-    flash("Only officesr can approve request")
+    flash("Only Facilities Officers can approve request")
     return redirect(url_for("dashboard"))
 
 @app.route("/update_transit", methods=['GET', 'POST'])
@@ -274,7 +275,7 @@ def transferReport():
     cur = conn.cursor()
     cur.execute("SELECT * FROM transit WHERE load_time IS Null AND unload_time IS Null")
     transit = cur.fetchall()
-    if session['role'] == 'facilities_officer':
+    if session['role'] == 'logistics_officer':
         if request.method == 'POST':
             load_time = request.form['load']
             unload_time = request.form['unload']
@@ -286,7 +287,7 @@ def transferReport():
             return redirect(url_for('dashboard'))
         conn.close()
         return render_template("update_transit.html", transit=transit)
-    flash("Only Facilities Officer can update tracking information.")
+    flash("Only Logistics Officer can update tracking information.")
     conn.close()
     return redirect(url_for("dashboard"))
 
