@@ -13,7 +13,9 @@
 		<li><a href="{{ url_for('disposeAsset') }}">Dispose Asset</a></li>	
 		<li><a href="{{ url_for('transferReq') }}">Transfer Request</a></li>
 		<li><a href="{{ url_for('approveReq') }}">Approve Request</a></li>
-
+		<li><a href="{{ url_for('transferReport') }}">Transfer Update</a></li>
+		
+		
 		{% else %}
 		<li><a href="{{ url_for('login') }}">Login</a></li>
 		{% endif %}
