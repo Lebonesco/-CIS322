@@ -38,6 +38,7 @@ create table requests (
 	request_pk serial primary key,
 	requester_fk integer REFERENCES users(user_pk) not null,
 	request_data timestamp,
+	approve_by integer REFERENCES users(user_pk) not null,
 	approval_data timestamp,
 	source_fk integer REFERENCES facilities(facility_pk) not null,
 	destination_fk integer REFERENCES facilities(facility_pk) not null,

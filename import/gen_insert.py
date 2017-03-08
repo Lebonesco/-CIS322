@@ -102,6 +102,8 @@ def transfers(lines):
         
         cur.execute("SELECT user_pk FROM users WHERE username='"+request_by+"';")
         requester_fk = cur.fetchall()
+        cur.execute("SELECT user_pk FROM users WHERE username='"+approve_by+"';")
+        approver_fk = cur.fetchall() 
         cur.execute("SELECT facility_pk FROM facilities WHERE code='"+source+"';")
         source_fk = cur.fetchall()
         cur.execute("SELECT facility_pk FROM facilities WHERE code='"+destination+"';")
@@ -109,7 +111,7 @@ def transfers(lines):
         cur.execute("SELECT asset_pk FROM assets WHERE asset_tag='"+asset_tag+"';")
         asset_fk = cur.fetchall()
         
-        cur.execute("INSERT INTO requests (requester_fk, request_data, approval_data, source_fk, destination_fk, assset_fk) VALUES ('"+str(requester_fk[0][0])+"', '"+request_dt+"','"+approve_dt+"','"+str(source_fk[0][0])+"','"+str(destination_fk[0][0])+"','"+str(asset_fk[0][0])+"');")
+        cur.execute("INSERT INTO requests (requester_fk, approve_by, request_data, approval_data, source_fk, destination_fk, assset_fk) VALUES ('"+str(requester_fk[0][0])+"','"+str(approver_fk[0][0])+"','"+request_dt+"','"+approve_dt+"','"+str(source_fk[0][0])+"','"+str(destination_fk[0][0])+"','"+str(asset_fk[0][0])+"');")
         conn.commit()
         cur.execute("SELECT request_pk from requests WHERE requester_fk='"+str(requester_fk[0][0])+"' AND assset_fk='"+str(asset_fk[0][0])+"' AND request_data='"+request_dt+"' AND approval_data='"+approve_dt+"';")
         request_pk = cur.fetchall()
