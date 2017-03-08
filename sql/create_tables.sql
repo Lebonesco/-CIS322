@@ -36,7 +36,7 @@ create table asset_at (
 	
 create table requests (
 	request_pk serial primary key,
-	requester_fk integer REFERENCES roles(role_pk) not null,
+	requester_fk integer REFERENCES users(user_pk) not null,
 	request_data timestamp,
 	approval_data timestamp,
 	source_fk integer REFERENCES facilities(facility_pk) not null,
