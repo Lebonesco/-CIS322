@@ -11,6 +11,7 @@ create table users (
 	user_pk serial primary key,
 	username varchar(16),
 	password varchar(16),
+	active Boolean,
 	role_fk integer REFERENCES roles(role_pk) not null
 );
 
