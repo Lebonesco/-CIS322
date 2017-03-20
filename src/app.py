@@ -85,10 +85,10 @@ def activate_user():
             cur.execute("SELECT * FROM users WHERE username='"+req['username']+"';")
             result = cur.fetchall()
             if len(result) > 0:
-                cur.execute("DELETE FROM users WHERE username='"+req['username']+"';")
-            
-            role = 1 if facilityOfficer else 2
-            cur.execute("INSERT INTO users (username, password, role_fk) VALUES ('"+req['username']+"','"+req['password']+"',"+str(role)+");")
+                cur.execute("UPDATE users SET active=TRUE, password='"+req['password']+"' WHERE username='"+req['username']+"';")        
+            else:
+                role = 1 if facilityOfficer else 2
+                cur.execute("INSERT INTO users (username, password, role_fk) VALUES ('"+req['username']+"','"+req['password']+"',"+str(role)+");")
             conn.commit()
         except Exception as e:
             data['result'] = 'failure: ' + str(e)
