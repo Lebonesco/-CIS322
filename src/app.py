@@ -39,33 +39,64 @@ def dashboard():
         conn.close()
         return render_template("dashboard.html", data=data, header=header, rows=rows, url=url)
 
-@app.route("/create_user", methods=['GET', 'POST'])
-def create_user():	
-        conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
-        cur = conn.cursor()
-        
-        if request.method == 'POST':
-                name = request.form['name']
-                password = request.form['password']
-                role = request.form['role']
-                cur.execute("SELECT username FROM users WHERE username='"+name+"';")
-                results = cur.fetchall()
-                if len(results) == 0:
-                        cur.execute("SELECT role_pk FROM roles WHERE rolename='" + role + "';");
-                        role_pk = cur.fetchall()
-                        if len(role_pk) == 0:
-                                cur.execute("INSERT INTO roles (rolename) VALUES ('"+role+"');")
-                                cur.execute("SELECT role_pk FROM roles WHERE rolename='" + role + "';");
-                                role_pk = cur.fetchall()
-                        role_fk = role_pk[0]
-                        cur.execute("INSERT INTO users (username, password, role_fk) VALUES ('"+name+"', '"+password+"', "+str(role_fk[0])+");")
-                        conn.commit()
-                        flash("User successfully inserted into database")
-                else:
-                        flash("User already has this name")
-        conn.close()
-        return render_template("createUser.html")
+@app.route("/revoke_user", methods=['POST'])
+def revoke_user():
+    conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+    cur = conn.cursor()
+    if request.method == 'POST' and 'arguments' in request.form:
+        req = json.loads(request.form['arguments'])
 
+    data = {}
+    data['result'] = "success"
+    data['input'] = req
+    try:
+        cur.execute("SELECT * FROM users WHERE username='"+req['username']+"';")
+        result = cur.fetchall()
+        if len(result) > 0:
+            cur.execute("DELETE FROM users WHERE username='"+req['username']+"';")
+        else:
+            data['result'] = 'user does not exist'
+        conn.commit()
+    except Exception as e:
+        data['result'] = 'failure'
+    data = json.dumps(data)
+    return data
+
+@app.route("/activate_user", methods=['POST'])
+def activate_user():
+    conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
+    cur = conn.cursor()
+        
+    if request.method == 'POST' and 'arguments' in request.form:
+        req = json.loads(request.form['arguments'])
+
+    data = {}
+    data['result'] = 'success'
+    facilityOfficer = None
+    if req['role'] == 'facofc':
+        facilityOfficer = True
+    elif req['role'] == 'logofc':
+        facilityOfficer = False
+    else:
+        data['result'] = 'failure'
+
+    if facilityOfficer != None:
+        try:
+            cur.execute("SELECT * FROM users WHERE username='"+req['username']+"';")
+            result = cur.fetchall()
+            if len(result) > 0:
+                cur.execute("UPDATE users SET active=TRUE, password='"+req['password']+"' WHERE username='"+req['username']+"';")        
+            else:
+                role = 1 if facilityOfficer else 2
+                cur.execute("INSERT INTO users (username, password, role_fk) VALUES ('"+req['username']+"','"+req['password']+"',"+str(role)+");")
+            conn.commit()
+        except Exception as e:
+            data['result'] = 'failure: ' + str(e)
+
+    data = json.dumps(data)
+    conn.close()
+    return data
+                
 @app.route("/add_facility", methods=['GET', 'POST'])
 def add_facility():
     conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
