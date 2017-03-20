@@ -97,33 +97,6 @@ def activate_user():
     conn.close()
     return data
                 
-@app.route("/create_user", methods=['GET', 'POST'])
-def create_user():	
-        conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
-        cur = conn.cursor()
-        
-        if request.method == 'POST':
-                name = request.form['name']
-                password = request.form['password']
-                role = request.form['role']
-                cur.execute("SELECT username FROM users WHERE username='"+name+"';")
-                results = cur.fetchall()
-                if len(results) == 0:
-                        cur.execute("SELECT role_pk FROM roles WHERE rolename='" + role + "';");
-                        role_pk = cur.fetchall()
-                        if len(role_pk) == 0:
-                                cur.execute("INSERT INTO roles (rolename) VALUES ('"+role+"');")
-                                cur.execute("SELECT role_pk FROM roles WHERE rolename='" + role + "';");
-                                role_pk = cur.fetchall()
-                        role_fk = role_pk[0]
-                        cur.execute("INSERT INTO users (username, password, role_fk) VALUES ('"+name+"', '"+password+"', "+str(role_fk[0])+");")
-                        conn.commit()
-                        flash("User successfully inserted into database")
-                else:
-                        flash("User already has this name")
-        conn.close()
-        return render_template("createUser.html")
-
 @app.route("/add_facility", methods=['GET', 'POST'])
 def add_facility():
     conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
