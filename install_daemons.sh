@@ -1,8 +1,5 @@
 #! /usr/bin/bash
 
-# This script is for downloading and installing some daemons that might be
-# needed later in the project... The output of this script is worth 0 points
-# when grading the term project due to the incorrect application versions.
 
 # Usage:
 #    ./install_daemons.sh <prefix>
@@ -12,7 +9,6 @@ if [ "$#" -ne 1 ]; then
     exit;
 fi
 
-# The following steps build the wrong version of each of the programs
 git clone https://github.com/postgres/postgres.git pg_build
 cd pg_build
 git checkout REL9_6_STABLE
