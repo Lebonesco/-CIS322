@@ -167,8 +167,7 @@ def login():
     if request.method == 'POST':
         cur.execute("SELECT password, active from users WHERE username='" + request.form['name'] + "';")
         result = cur.fetchall()
-        flash(result)
-        if len(result[0]) < 2:
+        if len(result) == 0:
             error = "User doesn't exist"
         else:
             tmp = False
