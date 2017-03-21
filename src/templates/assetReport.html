@@ -24,12 +24,14 @@
 	<th>Asset Tag</th>
 	<th>Facility</th>
 	<th>Arrival Date</th>
+	<th>Departure/Disposal Date</th>
 	<tr>
 {% for data in data %}
 	<tr>
 	<td>{{data[0]}}</td>
 	<td>{{data[1]}}</td>
 	<td>{{data[2]}}</td>
+	<td>{{data[3]}}</td>
 	<tr>
 {% endfor %}
 <table>

@@ -243,11 +243,12 @@ def assetReport():
         facility = request.form['facility']
         date = request.form['date']
         try:
-            cur.execute("SELECT asset_tag, common_name, arrive_dt FROM assets a JOIN asset_at aa ON asset_pk=asset_fk JOIN facilities ON facility_fk=facility_pk WHERE facilities.common_name LIKE '%"+facility+"%' AND aa.arrive_dt >= '"+date+"' AND aa.depart_dt <= '"+date+"';")
+            cur.execute("SELECT asset_tag, common_name, arrive_dt, depart_dt FROM assets a JOIN asset_at aa ON asset_pk=asset_fk JOIN facilities ON facility_fk=facility_pk WHERE facilities.common_name LIKE '%"+facility+"%' AND aa.arrive_dt <= '"+date+"' AND aa.depart_dt >= '"+date+"';")
             data = cur.fetchall()
         except Exception as e:
             flash('Please enter a Date')
     conn.close()
+    flash(data)
     return render_template("assetReport.html", facilities=facilities, data=data)
 
 @app.route("/transfer_req", methods=['GET', 'POST'])
