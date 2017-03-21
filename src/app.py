@@ -23,7 +23,7 @@ def dashboard():
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
         cur = conn.cursor()
         
-        if session['role'] == 'logistics_officer':
+        if session['role'] == 'Logistics Officer':
             cur.execute("SELECT * FROM requests WHERE request_pk NOT IN(SELECT request_fk FROM transit);")
             data = cur.fetchall()
             header = "Request"
@@ -189,7 +189,7 @@ def disposeAsset():
     conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
     cur = conn.cursor()
     
-    if session['role'] != 'officer':
+    if session['role'] != 'Logistics Officer':
         if request.method == 'POST':
             asset_tag = request.form['asset_tag']
             date = request.form['date']
@@ -243,8 +243,12 @@ def transferReq():
 
 
     error = ''
-    if session['role'] == 'logistics_officer':
+    if session['role'] == 'Logistics Officer':
         if request.method == 'POST':
+            if "asset_tag" not in request.form or "source" not in request.form or "destination" not in request.form or "date" not in request.form:
+                flash("missing values")
+                return render_template("transferReq.html", error=error, facilities=facilities, assets=assets)
+
             asset_tag = request.form['asset_tag']
             source = request.form['source']
             destination = request.form['destination']
@@ -279,7 +283,7 @@ def approveReq():
     requests = cur.fetchall()
 
     error = ''
-    if session['role'] == 'facilities_officer':
+    if session['role'] == 'Facility Officer':
         if request.method == 'POST':
             approval = request.form.getlist("approval")
             deny = request.form.getlist("deny")
@@ -306,7 +310,7 @@ def transferReport():
     cur = conn.cursor()
     cur.execute("SELECT * FROM transit WHERE load_time IS Null AND unload_time IS Null")
     transit = cur.fetchall()
-    if session['role'] == 'logistics_officer':
+    if session['role'] == 'Logistics Officer':
         if request.method == 'POST':
             load_time = request.form['load']
             unload_time = request.form['unload']
