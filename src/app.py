@@ -14,7 +14,7 @@ def login_required(f):
 			return f(*args, **kwargs)
 		else:
 			flash("login required")
-			return redirect(url_for('login_page'))
+			return redirect(url_for('login'))
 	return wrap
 
 @app.route("/dashboard")
@@ -53,7 +53,7 @@ def revoke_user():
         cur.execute("SELECT * FROM users WHERE username='"+req['username']+"';")
         result = cur.fetchall()
         if len(result) > 0:
-            cur.execute("DELETE FROM users WHERE username='"+req['username']+"';")
+            cur.execute("UPDATE users SET active=FalseIWHERE username='"+req['username']+"';")
         else:
             data['result'] = 'user does not exist'
         conn.commit()
@@ -88,7 +88,7 @@ def activate_user():
                 cur.execute("UPDATE users SET active=TRUE, password='"+req['password']+"' WHERE username='"+req['username']+"';")        
             else:
                 role = 1 if facilityOfficer else 2
-                cur.execute("INSERT INTO users (username, password, role_fk) VALUES ('"+req['username']+"','"+req['password']+"',"+str(role)+");")
+                cur.execute("INSERT INTO users (username, password, role_fk, active) VALUES ('"+req['username']+"','"+req['password']+"',"+str(role)+", TRUE);")
             conn.commit()
         except Exception as e:
             data['result'] = 'failure: ' + str(e)
@@ -165,24 +165,33 @@ def login():
 	
     error = ''
     if request.method == 'POST':
-        cur.execute("SELECT password from users WHERE username='" + request.form['name'] + "';")
+        cur.execute("SELECT password, active from users WHERE username='" + request.form['name'] + "';")
         result = cur.fetchall()
-        if len(result) == 0:
+        flash(result)
+        if len(result[0]) < 2:
             error = "User doesn't exist"
         else:
             tmp = False
-            for password in result:
-                if password[0] == request.form['password']:
-                    tmp = True
+            password = result[0]
+            password = password[0]
+            if password == request.form['password']:
+                tmp = True
             if not tmp:
                 error = "Invalid password"
             else:
-                cur.execute("SELECT rolename FROM roles r JOIN users u ON r.role_pk=u.role_fk WHERE u.username='"+request.form['name']+"';")
-                role = cur.fetchone()
-                session['name'] = request.form['name']
-                session['logged_in'] = True
-                session['role'] = role[0]
-                return redirect(url_for('dashboard'))
+                active = result[0]
+                active = active[1]
+                if not active:
+                    error = "User is not active"
+
+                else:   
+                    cur.execute("SELECT rolename FROM roles r JOIN users u ON r.role_pk=u.role_fk WHERE u.username='"+request.form['name']+"';")
+                    role = cur.fetchone()
+                    session['name'] = request.form['name']
+                    session['logged_in'] = True
+                    session['role'] = role[0]
+                    conn.close()
+                    return redirect(url_for('dashboard'))
 	
     return render_template('login.html', error=error)
 
