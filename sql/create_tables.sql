@@ -18,7 +18,8 @@ create table users (
 create table assets (
 	asset_pk serial primary key,
 	asset_tag varchar(16),
-	description varchar(122)
+	description varchar(122),
+	disposed Boolean
 );
 
 create table facilities (
@@ -38,7 +39,7 @@ create table requests (
 	request_pk serial primary key,
 	requester_fk integer REFERENCES users(user_pk) not null,
 	request_data timestamp,
-	approve_by integer REFERENCES users(user_pk) not null,
+	approve_by integer REFERENCES users(user_pk),
 	approval_data timestamp,
 	source_fk integer REFERENCES facilities(facility_pk) not null,
 	destination_fk integer REFERENCES facilities(facility_pk) not null,

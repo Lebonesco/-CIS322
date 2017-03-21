@@ -23,7 +23,7 @@ def dashboard():
         conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
         cur = conn.cursor()
         
-        if session['role'] == 'Logistics Officer':
+        if session['role'] == 'Facility Officer':
             cur.execute("SELECT * FROM requests WHERE request_pk NOT IN(SELECT request_fk FROM transit);")
             data = cur.fetchall()
             header = "Request"
@@ -116,6 +116,7 @@ def add_facility():
             flash("Facility successfully inserted into database")
         else:
             flash("Facility already in database")
+        return redirect(url_for("add_facility"))
     conn.close()
     return render_template("addFacility.html", facilities=facilities)
 
@@ -143,11 +144,13 @@ def add_asset():
             facility_pk = cur.fetchall()
             facility_pk = facility_pk[0]
             asset_pk = asset_pk[0]
-            cur.execute("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES ("+str(asset_pk[0])+", "+str(facility_pk[0])+", '"+date+"');")
+            cur.execute("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt, disposed) VALUES ("+str(asset_pk[0])+", "+str(facility_pk[0])+", '"+date+"', False);")
             conn.commit()
             flash("Asset successfully inserted into database")
         else:
             flash("Asset already in database")
+        conn.close()
+        return redirect(url_for("add_asset"))
     conn.close()
     return render_template("addAsset.html", facilities=facilities, assets=assets)
 
@@ -188,8 +191,10 @@ def login():
 def disposeAsset():
     conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
     cur = conn.cursor()
-    
-    if session['role'] != 'Logistics Officer':
+    cur.execute("SELECT asset_tag FROM assets")
+    assets = cur.fetchall()
+
+    if session['role'] == 'Logistics Officer':
         if request.method == 'POST':
             asset_tag = request.form['asset_tag']
             date = request.form['date']
@@ -198,14 +203,20 @@ def disposeAsset():
             if len(result) == 0:
                 flash("asset does not exist")
             else:
-                asset_pk = result[0]
-                cur.execute("UPDATE asset_at SET depart_dt='"+date+"' WHERE asset_fk="+str(asset_pk[0])+";")
-                conn.commit()
-                conn.close()
-                flash("asset_tag disposed")
+                cur.execute("SELECT * FROM assets JOIN asset_at ON asset_pk=asset_fk WHERE depart_dt is not null AND asset_tag='"+asset_tag+"';")
+                stuff = cur.fetchall()
+                if len(stuff) > 0:
+                    flash("Asset Already Disposed")
+                else:
+                    asset_pk = result[0]
+                    cur.execute("UPDATE asset_at SET depart_dt='"+date+"' WHERE asset_fk="+str(asset_pk[0])+";")
+                    cur.execute("UPDATE assets SET disposed=TRUE WHERE asset_pk="+str(asset_pk[0])+";")
+                    conn.commit()
+                    conn.close()
+                    flash("asset_tag disposed")
                 return redirect(url_for("dashboard"))
         conn.close()
-        return render_template("disposeAsset.html")
+        return render_template("disposeAsset.html", assets=assets)
 
 
     flash("Only logistics officers can dispose of assets")
@@ -224,7 +235,7 @@ def assetReport():
         facility = request.form['facility']
         date = request.form['date']
         try:
-            cur.execute("SELECT asset_tag, common_name, arrive_dt FROM assets a JOIN asset_at aa ON asset_pk=asset_fk INNER JOIN facilities ON facility_fk=facility_pk WHERE facilities.common_name LIKE '%"+facility+"%' AND '"+date+"' >= aa.arrive_dt AND '"+date+"' <= aa.depart_dt;")
+            cur.execute("SELECT asset_tag, common_name, arrive_dt FROM assets a JOIN asset_at aa ON asset_pk=asset_fk JOIN facilities ON facility_fk=facility_pk WHERE facilities.common_name LIKE '%"+facility+"%' AND aa.arrive_dt >= '"+date+"' AND aa.depart_dt <= '"+date+"';")
             data = cur.fetchall()
         except Exception as e:
             flash('Please enter a Date')
@@ -241,35 +252,37 @@ def transferReq():
     cur.execute("SELECT asset_tag FROM assets;")
     assets = cur.fetchall()
 
-
     error = ''
     if session['role'] == 'Logistics Officer':
         if request.method == 'POST':
             if "asset_tag" not in request.form or "source" not in request.form or "destination" not in request.form or "date" not in request.form:
                 flash("missing values")
-                return render_template("transferReq.html", error=error, facilities=facilities, assets=assets)
-
-            asset_tag = request.form['asset_tag']
-            source = request.form['source']
-            destination = request.form['destination']
-            date = request.form['date']
-            cur.execute("SELECT asset_pk FROM assets WHERE asset_tag='"+asset_tag+"';")
-            asset_fk = cur.fetchone()
-            if asset_fk != None:
-                cur.execute("SELECT user_pk from users WHERE username='"+session['name']+"';")
-                user_pk = cur.fetchone()
-                cur.execute("SELECT facility_pk from facilities WHERE common_name='"+source+"';")
-                source_fk = cur.fetchone()
-                cur.execute("SELECT facility_pk from facilities WHERE common_name='"+destination+"';")
-                destination_fk = cur.fetchone()
-                cur.execute("INSERT INTO requests (requester_fk, request_data, source_fk, destination_fk, assset_fk) VALUES ("+str(user_pk[0])+",'"+date+"',"+str(source_fk[0])+","+str(destination_fk[0])+","+str(asset_fk[0])+");")
+            else:
+                asset_tag = request.form['asset_tag']
+                source = request.form['source']
+                destination = request.form['destination']
+                date = request.form['date']
+                cur.execute("SELECT asset_pk FROM assets WHERE asset_tag='"+asset_tag+"';")
+                asset_fk = cur.fetchall()
+                if len(asset_fk) >= 0:
+                    cur.execute("SELECT user_pk from users WHERE username='"+session['name']+"';")
+                    user_pk = cur.fetchone()
+                    cur.execute("SELECT facility_pk from facilities WHERE common_name='"+source+"';")
+                    source_fk = cur.fetchone()
+                    cur.execute("SELECT facility_pk from facilities WHERE common_name='"+destination+"';")
+                    destination_fk = cur.fetchone()
+                    
+                    cur.execute("INSERT INTO requests (requester_fk, request_data, source_fk, destination_fk, assset_fk) VALUES ("+str(user_pk[0])+",'"+date+"',"+str(source_fk[0])+","+str(destination_fk[0])+","+str(asset_fk[0][0])+");")
+                    flash("Asset Transfer Request is Successful!")
+                else:
+                    flash("Asset not exist")
                 conn.commit()
                 conn.close()
-                flash("Asset Transfer Request is Successful!")
                 return redirect(url_for("dashboard"))
                 
             error = "Asset Tag does not exist"
         return render_template("transferReq.html", error=error, facilities=facilities, assets=assets)
+    
     flash("Only Logistics officers can request transfers")
     conn.close()
     return redirect(url_for('dashboard'))
@@ -292,6 +305,7 @@ def approveReq():
             if len(approval) != 0:
                 flash("APPROVED")  
                 cur.execute("INSERT INTO transit (request_fk) VALUES ('"+request_pk+"');")
+                cur.execute("UPDATE requests SET approve_by='"+session['name']+"' WHERE request_pk='"+request_pk+"';")
             else:
                 flash("Request has been removed")
                 cur.execute("DELETE FROM requests WHERE request_pk='"+request_pk+"';")

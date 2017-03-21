@@ -4,8 +4,8 @@ DB_NAME=$1
 OUTPUT_DIR=$2
 PORT=5432
 HOST="/tmp"
-
-cp exportCSV.py $OUTPUT_DIR
+mkdir -p $OUTPUT_DIR
+cp exportCSV.py "$OUTPUT_DIR"
 cd $OUTPUT_DIR
 
 for i in "users" "facilities" "assets" "transit" 
