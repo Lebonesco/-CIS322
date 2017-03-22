@@ -24,10 +24,10 @@ def dashboard():
         cur = conn.cursor()
         
         if session['role'] == 'Facility Officer':
-            cur.execute("SELECT * FROM requests WHERE request_pk NOT IN(SELECT request_fk FROM transit);")
+            cur.execute("SELECT request_pk, username, f1.common_name, f2.common_name, request_data  FROM requests JOIN users ON requester_fk=user_pk JOIN facilities f1 ON source_fk=f1.facility_pk JOIN facilities f2 ON destination_fk=f2.facility_pk WHERE request_pk NOT IN(SELECT request_fk FROM transit);")
             data = cur.fetchall()
             header = "Request"
-            rows = ["Requester", "Request Date", "Source", "Destination"]
+            rows = ["Request ID","Requester","Source", "Destination", "Request Date"]
             url = "/approve_req"
         else:
             cur.execute("SELECT * FROM transit WHERE load_time IS Null AND unload_time IS Null")

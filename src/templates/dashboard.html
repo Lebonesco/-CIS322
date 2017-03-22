@@ -12,9 +12,11 @@
 		<td><a href={{url}}>{{row}}</a></td>
 	{% endfor %}
 	<tr>
-{% for item in data %}
+{% for items in data %}
 	<tr>
-		<td><a href={{url}}>{{item}}</a></td>
+		{% for item in items %}
+			<td><a href={{url}}>{{item}}</a></td>
+		{% endfor %}
 	<tr>
 {% endfor %}
 <table>
