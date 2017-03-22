@@ -30,7 +30,7 @@ def dashboard():
             rows = ["Request ID","Requester","Source", "Destination", "Request Date"]
             url = "/approve_req"
         else:
-            cur.execute("SELECT * FROM transit WHERE load_time IS Null AND unload_time IS Null")
+            cur.execute("SELECT request_fk, load_time, unload_time FROM transit WHERE load_time IS Null AND unload_time IS Null")
             data = cur.fetchall()
             header = "Transit"
             rows = ["Request ID", "Load Time", "Unload Time"]
@@ -318,6 +318,7 @@ def approveReq():
                 flash("APPROVED")  
                 cur.execute("INSERT INTO transit (request_fk) VALUES ('"+request_pk+"');")
                 cur.execute("UPDATE requests SET approve_by='"+str(approved_by[0])+"' WHERE request_pk='"+request_pk+"';")
+            
             else:
                 flash("Request has been removed")
                 cur.execute("DELETE FROM requests WHERE request_pk='"+request_pk+"';")
@@ -342,6 +343,12 @@ def transferReport():
             unload_time = request.form['unload']
             transit_pk = request.form["transit_pk"]
             cur.execute("UPDATE transit SET load_time='"+load_time+"', unload_time='"+unload_time+"' WHERE transit_pk='"+transit_pk+"';")
+            
+            cur.execute("SELECT unload_time, assset_fk, destination_fk FROM transit JOIN requests ON request_fk=request_pk WHERE transit_pk='"+transit_pk+"';")
+            result = cur.fetchall()
+            result = result[0]
+            cur.execute("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES ('"+str(result[1])+"','"+str(result[2])+"','"+str(result[0])+"');")
+
             conn.commit()
             flash("Updated load/unload times")
             conn.close()

@@ -11,7 +11,9 @@
 			<option value={{item[0]}} name={{item[0]}}>{{item[0]}}</option>
 		{% endfor %}
 	</select>
+	<p>Load Time</p>
 	<input type="date" class="form-control" placeholder="load" name="load" value="{{request.form.load}}">
+	<p>Unload Time</p>
 	<input type="date" class="form-control" placeholder="unload" name="unload" value="{{request.form.unload}}">
 	<input type="submit" value="Submit" class="btn" name="submit">
 </form>
