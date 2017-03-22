@@ -137,14 +137,14 @@ def add_asset():
         cur.execute("SELECT asset_tag FROM assets WHERE asset_tag='"+asset_tag+"';")
         results = cur.fetchall()
         if len(results) == 0:
-            cur.execute("INSERT INTO assets (asset_tag, description) VALUES ('"+asset_tag+"', '"+description+"');")
+            cur.execute("INSERT INTO assets (asset_tag, description, disposed) VALUES ('"+asset_tag+"', '"+description+"', FALSE);")
             cur.execute("SELECT asset_pk FROM assets WHERE asset_tag='"+asset_tag+"';")
             asset_pk = cur.fetchall()
             cur.execute("SELECT facility_pk FROM facilities WHERE common_name='"+facility+"';")
             facility_pk = cur.fetchall()
             facility_pk = facility_pk[0]
             asset_pk = asset_pk[0]
-            cur.execute("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt, disposed) VALUES ("+str(asset_pk[0])+", "+str(facility_pk[0])+", '"+date+"', False);")
+            cur.execute("INSERT INTO asset_at (asset_fk, facility_fk, arrive_dt) VALUES ("+str(asset_pk[0])+", "+str(facility_pk[0])+", '"+date+"');")
             conn.commit()
             flash("Asset successfully inserted into database")
         else:
