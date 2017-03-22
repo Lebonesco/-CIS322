@@ -13,11 +13,11 @@
 	<input type="text" class="form-control" placeholder="asset tag" name="asset_tag" value="{{request.form.asset_tag}}">
 	<select name="source" value="{{request.form.source}}">
 		{% for facility in facilities %}
-			<option value={{facility[0]}} name={{facility[0]}}>{{facility[0]}}</option>
+			<option value="{{facility[0]}}" name={{facility}}>{{facility[0]}}</option>
 		{% endfor %}
 	</select><select name="destination" value="{{request.form.destination}}">
 		{% for facility in facilities %}
-			<option value={{facility[0]}} name={{facility[0]}}>{{facility[0]}}</option>
+			<option value="{{facility[0]}}" name={{facility}}>{{facility[0]}}</option>
 		{% endfor %}
 	</select>
 	<input type="date" class="form-control" placeholder="date" name="date" value="{{request.form.date}}">

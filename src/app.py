@@ -273,14 +273,13 @@ def transferReq():
                 date = request.form['date']
                 cur.execute("SELECT asset_pk FROM assets WHERE asset_tag='"+asset_tag+"';")
                 asset_fk = cur.fetchall()
-                if len(asset_fk) >= 0:
+                if len(asset_fk) > 0:
                     cur.execute("SELECT user_pk from users WHERE username='"+session['name']+"';")
                     user_pk = cur.fetchone()
                     cur.execute("SELECT facility_pk from facilities WHERE common_name='"+source+"';")
                     source_fk = cur.fetchone()
                     cur.execute("SELECT facility_pk from facilities WHERE common_name='"+destination+"';")
                     destination_fk = cur.fetchone()
-                    
                     cur.execute("INSERT INTO requests (requester_fk, request_data, source_fk, destination_fk, assset_fk) VALUES ("+str(user_pk[0])+",'"+date+"',"+str(source_fk[0])+","+str(destination_fk[0])+","+str(asset_fk[0][0])+");")
                     flash("Asset Transfer Request is Successful!")
                 else:
@@ -339,6 +338,9 @@ def transferReport():
     transit = cur.fetchall()
     if session['role'] == 'Logistics Officer':
         if request.method == 'POST':
+            if "load" not in request.form or "unload" not in request.form or "transit_pk" not in request.form:
+                flash("Missing Values")
+                return redirect(url_for('transferReport'))
             load_time = request.form['load']
             unload_time = request.form['unload']
             transit_pk = request.form["transit_pk"]
