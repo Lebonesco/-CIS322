@@ -8,10 +8,11 @@
 <table class="table table-condenesed">
 	<tr>
 	<th>Requester ID</th>
-	<th>Request Date</th>
+	<th>Requester</th>
+	<th>Asset</td>
 	<th>Source</th>
 	<th>Destination</th>
-	<th>Asset ID</th>
+	<th>Request Date</th>
 	<tr>
 {% for request in requests %}
 	<tr>
@@ -20,6 +21,7 @@
 	<td>{{request[2]}}</td>
 	<td>{{request[3]}}</td>
 	<td>{{request[4]}}</td>
+	<td>{{request[5]}}</td>
 	<form action="" method="POST" class="form-inline">
 		<input type="hidden" name="request_pk" value="{{request[0]}}">
 		<td><input type="submit" value="Approve" class="btn btn-success" name="approval"><td>

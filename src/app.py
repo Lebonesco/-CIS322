@@ -301,7 +301,7 @@ def transferReq():
 def approveReq():
     conn = psycopg2.connect(dbname=dbname, host=dbhost, port=dbport)
     cur = conn.cursor()
-    cur.execute("SELECT * FROM requests WHERE request_pk NOT IN(SELECT request_fk FROM transit);")
+    cur.execute("SELECT request_pk, username, asset_tag, f1.common_name, f2.common_name, request_data  FROM requests JOIN users ON requester_fk=user_pk JOIN facilities f1 ON source_fk=f1.facility_pk JOIN facilities f2 ON destination_fk=f2.facility_pk JOIN assets ON assset_fk=asset_pk WHERE request_pk NOT IN(SELECT request_fk FROM transit);")
     requests = cur.fetchall()
 
     error = ''
@@ -311,10 +311,13 @@ def approveReq():
             deny = request.form.getlist("deny")
             request_pk = request.form["request_pk"]
 
+            cur.execute("SELECT user_pk FROM users WHERE username='"+session['name']+"';")
+            approved_by = cur.fetchall();
+            approved_by = approved_by[0]
             if len(approval) != 0:
                 flash("APPROVED")  
                 cur.execute("INSERT INTO transit (request_fk) VALUES ('"+request_pk+"');")
-                cur.execute("UPDATE requests SET approve_by='"+session['name']+"' WHERE request_pk='"+request_pk+"';")
+                cur.execute("UPDATE requests SET approve_by='"+str(approved_by[0])+"' WHERE request_pk='"+request_pk+"';")
             else:
                 flash("Request has been removed")
                 cur.execute("DELETE FROM requests WHERE request_pk='"+request_pk+"';")
